@@ -1,0 +1,93 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editmode ? 'Edit Claim':'Add Claim' " subheader="You Can Add or Edit  Claim">
+        <div class="p-grid p-mb-10">
+            <div class="p-col-12">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left">
+                    </div>
+                    <div class="p-toolbar-group-right">
+                        <p-button styleClass="p-button-primary p-mr-5" [label]="editmode ? 'Update' : 'Create'"
+                            icon="pi pi-plus" (click)="onSubmit()"></p-button>
+                            <p-button
+                            styleClass="p-button-secondary"
+                            label="Cancle"
+                            icon="pi pi-arrow-circle-left"
+                            (click)="onCancle()"
+                           ></p-button>
+                    </div>
+                </p-toolbar>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Description</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-claim>
+                    <tr>
+                        <td>{{claim.description}}</td>
+                        <td>{{claim.title }}</td>
+                        <td>{{claim.date}}</td>
+                        <td>{{claim.status}}</td>
+
+                        
+                    </tr>
+                </ng-template>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="p-grid">
+            <div class="p-col-5">
+                <form [formGroup]="form">
+                    <div class="card">
+                        <div class="p-fluid p-formgrid p-grid">
+                            <div class="field col">
+                                <label for="description">Description</label>
+                                <input formControlName="description" id="description" type="text"
+                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                                <small *ngIf="form.controls['description'].invalid && isSubmitted" class="p-error"> description is
+                                    required </small>
+                            </div>
+
+                            <div class="p-field p-col-12">
+                                <label for="title">Title</label> <br>
+                                <input formControlName="title" id="title" type="text" pInputText />
+                                <small *ngIf="form.controls['title'].invalid && isSubmitted" class="p-error">title is
+                                    required</small>
+                                
+                            </div>
+                            <div class="p-field p-col-12">
+                                <label for="date">Date</label> <br>
+                                <input formControlName="date" id="date" type="text" pInputText />
+                                <small *ngIf="form.controls['date'].invalid && isSubmitted" class="p-error">date is
+                                    required</small>
+                                
+                            </div>
+                            <div class="p-field p-col-12">
+                                <label for="status">Status</label> <br>
+                                <input formControlName="status" id="status" type="text" pInputText />
+                                <small *ngIf="form.controls['status'].invalid && isSubmitted" class="p-error">status is
+                                    required</small>
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </p-card>

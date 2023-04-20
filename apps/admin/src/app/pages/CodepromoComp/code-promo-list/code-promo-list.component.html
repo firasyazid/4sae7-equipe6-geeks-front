@@ -1,0 +1,48 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card header="Users" subheader="List of all CodePromos">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <p-button
+              styleClass="p-button-success"
+              label="New"
+              icon="pi pi-plus"
+              routerLink="form"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table [value]="codepromo" styleClass="p-datatable-gridlines">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="name">Code <p-sortIcon field="name"></p-sortIcon></th>
+              <th>IsSubmitted</th>
+              <th>Pourcentage</th>
+
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-codepromo>
+            <tr>
+              <td>{{ codepromo.codep }}</td>
+              <td>{{ codepromo.isSubmitt }}</td>
+              <td>{{ codepromo.pourcentage }}</td>
+
+              <td>
+                <p-button
+                (click)="updateUser(codepromo._id)"
+                   styleClass="p-button-success"
+                  icon="pi pi-pencil"
+                ></p-button>
+               </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+</div>

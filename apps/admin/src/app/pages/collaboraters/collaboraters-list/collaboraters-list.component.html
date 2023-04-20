@@ -1,0 +1,78 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card header="collaboraters" subheader="List of all collaboraters">
+        <div class="p-grid"> </div>
+        <div class="p-col-12">
+
+            <p-toolbar>
+
+                <div class="p-toolbar-group-left">
+                    <p-button label="New" icon="pi pi-plus" routerLink="form"></p-button>
+
+                </div>
+
+
+            </p-toolbar>
+        </div>
+
+        <div class="p-grid">
+
+            <div class="p-col-12">
+                <p-table
+          [paginator]="true"
+          [rows]="3"
+          [value]="collabs"
+          styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['name']"
+        >
+                     <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="name"> Name <p-sortIcon field="name"></p-sortIcon>
+                            </th>
+ 
+                              <th pSortableColumn="price"> lastname <p-sortIcon field="price"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="stock"> location <p-sortIcon field="stock"></p-sortIcon>
+                            <th pSortableColumn="category"> Category<p-sortIcon field="category"></p-sortIcon>
+                            <th pSortableColumn="create"> phone <p-sortIcon field="create"></p-sortIcon>
+ 
+
+
+                            <th></th>
+
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-collabs>
+                        <tr>
+                            <td>{{collabs.name }}</td>
+
+                              <td>{{collabs.lastname }}</td>
+                            <td>{{collabs.location }}</td>
+                            <td>{{collabs.category.name}}</td>
+                            <td>{{collabs.phone }}</td>
+ 
+
+                            
+
+                            <td>
+                                <p-button (click)="deleteCollab(collabs._id)" styleClass="p-button-danger -p-mr-5"
+                                    icon="pi pi-trash"></p-button>
+
+                                    <p-button (click)="updateCollab(collabs._id)" styleClass="p-button-success" icon="pi pi-pencil">
+                                    </p-button>
+                            </td>
+
+
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+
+    </p-card>
+
+</div>
