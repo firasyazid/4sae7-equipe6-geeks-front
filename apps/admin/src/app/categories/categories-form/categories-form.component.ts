@@ -41,8 +41,6 @@
            }
    
         _initForm(){ 
-
-
           this.form=this.formBuilder.group({
             description: ['', Validators.required],
             title: ['', Validators.required],
@@ -76,30 +74,29 @@
           }
 
           
-          private _addClaim(claim: Claim) {
-            this.claimService.createClaim(claim).subscribe(
-              (claim: Claim) => {
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Success',
-                  detail: `Claim ${claim.title} is created!`
-                });
-                timer(2000)
-                  .toPromise()
-                  .then(() => {
-                    this.location.back();
-                  });
-              },
-              () => {
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: 'claim is not created!'
-                });
-              }
-            );
+          _addClaim(claim: Claim) {
+            this.claimService.createClaim(claim).subscribe(() => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success!',
+                detail: 'Claim is added successfully',
+                life: 3000,
+              });
+              timer(2000)
+              .toPromise()
+              .then(() => {
+                this.location.back();
+              });
+          },
+          () => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'claim is not added!'
+              });
+            });
           }
-
+          
           private _updateClaim(claim  : Claim) {
             this.claimService.updateClaim(claim).subscribe(
               () => {
