@@ -32,9 +32,11 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-claims>
                         <tr>
+
+                            
                             <td>{{claims.description }}</td>
                             <td>{{claims.title}} </td>
-                            <td>{{claims.date}} </td>
+                            <td>{{claims.date| date: 'short' }} </td>
                             <td>{{claims.status}} </td>
                             <td>
                                 <p-button 

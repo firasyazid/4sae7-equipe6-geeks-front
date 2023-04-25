@@ -11,8 +11,6 @@ import { MessageService } from 'primeng/api';
 })
 export class ProductsListComponent implements OnInit {
    products: Service[] = [];
- 
-
   constructor(
 
     private productsService: ProductsService,

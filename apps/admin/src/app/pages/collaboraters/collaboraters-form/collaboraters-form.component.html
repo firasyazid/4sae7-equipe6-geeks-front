@@ -1,8 +1,8 @@
 <p-toast></p-toast>
 <div class="admin-page">
   <p-card
-    [header]="editmode ? 'Edit collaboraters' : 'Add collaboraters'"
-    subheader="You can add or edit collaboraters here"
+    [header]="editmode ? 'Edit Articles' : 'Add Articles'"
+    subheader="You can add or edit Articles here"
   >
     <div class="p-grid p-mb-5">
       <div class="p-col-12">
@@ -31,54 +31,27 @@
                 <form [formGroup]="form">
                     <div class="p-fluid p-formgrid p-grid">
                         <div class="p-field p-col">
-                            <label for="name">Name</label>
-                            <input formControlName="name" id="name" type="text" pInputText />
-                            <small *ngIf="form.controls['name'].invalid && isSubmitted" class="p-error">Name is
+                            <label for="name">description</label>
+                            <input formControlName="description" id="description" type="text" pInputText />
+                            <small *ngIf="form.controls['description'].invalid && isSubmitted" class="p-error">description is
                                 required</small>
                         </div>
+
                         <div class="p-field p-col">
-                            <label for="brand">lastname</label>
-                            <input formControlName="lastname" id="brand" type="text" pInputText />
-                            <small *ngIf="form.controls['lastname'].invalid && isSubmitted" class="p-error">lastname is
+                            <label for="brand">contenu</label>
+                            <input formControlName="contenu" id="contenu" type="text" pInputText />
+                            <small *ngIf="form.controls['contenu'].invalid && isSubmitted" class="p-error">contenu is
                                 required</small>
                         </div>
-                        <div class="p-field p-col">
-                            <label for="price">phone</label><br />
-                            <p-inputNumber formControlName="phone" mode="decimal" [useGrouping]="false">
-                            </p-inputNumber>
-                            <small *ngIf="form.controls['phone'].invalid && isSubmitted" class="p-error">phone is
-                                required</small>
-                        </div>
-                        <div class="p-field p-col">
-                          <label for="brand">Location</label>
-                          <input formControlName="location" id="brand" type="text" pInputText />
-                          <small *ngIf="form.controls['location'].invalid && isSubmitted" class="p-error">location is
-                              required</small>
-                      </div>
+                         
+                      
                     </div>
                  
-              <div class="p-field p-col-4">
-              <label for="category">category</label><br />
-              <p-dropdown
-                [options]="catagories"
-                formControlName="category"
-                optionLabel="name"
-                optionValue="_id"
-                [filter]="true"
-                filterBy="name"
-                placeholder="Select a Category"
-              ></p-dropdown>
-
-              <small *ngIf="ColabForm['category'].invalid && isSubmitted" class="p-error"
-              >Category is required</small
-            >
-            </div>
+           
 
             <div class="p-field p-col-12">
-              <label for="name">Image</label>
+              <label for="name">Image</label><br>
               <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
-
-
               <small *ngIf="form.controls['image'].invalid && isSubmitted" class="p-error">Image is
                   required</small>
               <div class="p-col-2 p-mt-2 p-pl-0">

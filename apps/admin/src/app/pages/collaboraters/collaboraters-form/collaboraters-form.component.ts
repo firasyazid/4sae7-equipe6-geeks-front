@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CategoriesService, Category, Collaborater, CollaboraterService } from '@eshop/products';
+import { Article, ArticleService } from '@eshop/products';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 import { Location } from '@angular/common';
@@ -16,15 +16,14 @@ export class CollaboratersFormComponent implements OnInit {
   editmode = false;
   form!: FormGroup;
   isSubmitted  = false; 
-  catagories: Category[] = [];
+  articles: Article[] = [];
   imageDisplay!: string | ArrayBuffer;
   currentProductId!: string;
 
 
   constructor(private formBuilder: FormBuilder ,private router: Router, 
-      private categoriesService : CategoriesService,
-      private collabservice: CollaboraterService,
-      private messageService: MessageService,
+      private articleserv : ArticleService,
+       private messageService: MessageService,
       private location: Location,
       private route: ActivatedRoute,) { }
 
@@ -36,13 +35,9 @@ export class CollaboratersFormComponent implements OnInit {
   private _initForm() { 
   
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      location: ['', Validators.required],
-      category: ['', Validators.required],
-      phone: ['', Validators.required],
+      description: ['', Validators.required],
+      contenu: ['', Validators.required],
       image: ['', Validators.required],
-
       });
 
   }
@@ -69,8 +64,8 @@ export class CollaboratersFormComponent implements OnInit {
 
   
   private _getCategories() {
-    this.categoriesService.getCategories().subscribe((categories) => {
-      this.catagories = categories;
+    this.articleserv.getArticle().subscribe((art) => {
+      this.articles = art;
     });
   }
 
@@ -78,12 +73,12 @@ export class CollaboratersFormComponent implements OnInit {
  
   
   private _addcollab(collab: FormData) {
-    this.collabservice.createCollab(collab).subscribe(
-      (collab: Collaborater) => {
+    this.articleserv.createArticle(collab).subscribe(
+      (collab: Article) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: `collaborater ${collab.name} is created!`
+          detail: `Article ${collab.id} is created!`
         });
         timer(2000)
           .toPromise()
@@ -95,7 +90,7 @@ export class CollaboratersFormComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'collaborater is not created!'
+          detail: 'Article is not created!'
         });
       }
     );
@@ -103,12 +98,13 @@ export class CollaboratersFormComponent implements OnInit {
 
 
   private _updateCollab(productFormData: FormData) {
-    this.collabservice.updateCollab(productFormData,this.currentProductId).subscribe(
+
+    this.articleserv.updateArticle(productFormData,this.currentProductId).subscribe(
       () => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'collaborater is updated!'
+          detail: 'Article is updated!'
         });
         timer(2000)
           .toPromise()
@@ -120,26 +116,25 @@ export class CollaboratersFormComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'collaborater is not updated!'
+          detail: 'Article is not updated!'
         });
       }
     );
-  }
+
+   }
+  
+
+
   private _checkEditMode() {
     this.route.params.subscribe((params) => {
          if (params['id'] ){
           this.editmode = true;
           this.currentProductId = params['id'];
-           this.collabservice.getCollab(params['id']).subscribe((collab) => {
-          this.ColabForm['name'].setValue(collab.name);
-          this.ColabForm['lastname'].setValue(collab.lastname);
-          this.ColabForm['phone'].setValue(collab.phone);
-          this.ColabForm['location'].setValue(collab.location);
-           this.ColabForm['category'].setValue(collab.category?.id);
-           this.imageDisplay != collab.image;
-           this.ColabForm['image'].setValidators([]);
-           this.ColabForm['image'].updateValueAndValidity();
-
+           this.articleserv.getArticlebyid(params['id']).subscribe((collab) => {
+          this.ColabForm['description'].setValue(collab.description);
+          this.ColabForm['contenu'].setValue(collab.contenu);
+          this.ColabForm['image'].setValidators([]);
+          this.ColabForm['image'].updateValueAndValidity();
          });
       }
     });

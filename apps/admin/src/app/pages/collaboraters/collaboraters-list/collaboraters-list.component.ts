@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Collaborater, CollaboraterService } from '@eshop/products';
-import { MessageService } from 'primeng/api';
+ import { MessageService } from 'primeng/api';
+import { Article, ArticleService } from '@eshop/products';
 
 @Component({
   selector: 'admin-collaboraters-list',   
@@ -9,41 +9,44 @@ import { MessageService } from 'primeng/api';
   styles: [
   ]
 })
+
+
+
 export class CollaboratersListComponent implements OnInit {
-  collabs: Collaborater[] = [];
+  articles: Article[] = [];
 
-
-  constructor(private collabservice: CollaboraterService,    private messageService : MessageService,
+   
+  constructor(private articleService: ArticleService,    private messageService : MessageService,
 
     private router: Router) { 
  }
 
+
   ngOnInit(): void {
-    this._getcollab();
-
+    this._getArticle();
   }
-  private _getcollab(){ 
-
-    this.collabservice.getCollabs().subscribe( (p) => { 
 
 
-      this.collabs = p;
+  private _getArticle(){ 
+    this.articleService.getArticle().subscribe( (p) => { 
+      this.articles = p;
     }
-      
-      
-      )
+          )
   }
 
-  deleteCollab(userId: string) {
+
+  deleteArticle(artcileid: string) {
   
-    this.collabservice.deleteCollab(userId).subscribe( () => { 
-      this._getcollab();
-      this.messageService.add({severity:'success', summary:' success', detail:'collaborater deleted'});
+    this.articleService.deleteArticle(artcileid).subscribe( () => { 
+      this._getArticle();
+      this.messageService.add({severity:'success', summary:' success', detail:'article deleted'});
     });
+  }
+
+
 
   
-  }
-  updateCollab(collabid: string) {
+  updateArticle(collabid: string) {
     this.router.navigateByUrl(`collab/form/${collabid}`);
   }
 }
