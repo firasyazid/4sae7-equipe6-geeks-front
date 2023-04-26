@@ -15,7 +15,9 @@ import { Article, ArticleService } from '@eshop/products';
 export class CollaboratersListComponent implements OnInit {
   articles: Article[] = [];
 
-   
+  currentProductId!: string;
+  articleSummary: string;
+
   constructor(private articleService: ArticleService,    private messageService : MessageService,
 
     private router: Router) { 
@@ -48,5 +50,11 @@ export class CollaboratersListComponent implements OnInit {
   
   updateArticle(collabid: string) {
     this.router.navigateByUrl(`collab/form/${collabid}`);
+  }
+
+  summarizeArticle(id: string): void {
+    this.articleService.summarizeArticle(id).subscribe(summary => {
+      console.log(summary);
+     });
   }
 }

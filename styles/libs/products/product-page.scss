@@ -30,7 +30,10 @@
       margin: 15px ;
       margin-right: 3px;
 
-
+      .button-container {
+        margin-bottom: 10px; /* add 10px margin at the bottom */
+    }
+    
   
       label {
         font-size: 1.2em;
@@ -38,6 +41,8 @@
   
       .p-button {
          background-color: $primary-color;
+         margin-bottom: 10px; /* add 10px margin at the bottom */
+
        }
     }
   

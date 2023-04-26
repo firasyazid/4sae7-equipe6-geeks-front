@@ -19,6 +19,7 @@ export class CollaboratersFormComponent implements OnInit {
   articles: Article[] = [];
   imageDisplay!: string | ArrayBuffer;
   currentProductId!: string;
+  articleSummary: string;
 
 
   constructor(private formBuilder: FormBuilder ,private router: Router, 
@@ -158,4 +159,10 @@ export class CollaboratersFormComponent implements OnInit {
   
   
   }
+
+   summarizeArticle(currentProductId: string): void {
+    this.articleserv.summarizeArticle(this.currentProductId)
+   }
+
+
 }

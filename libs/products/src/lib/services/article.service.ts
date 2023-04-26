@@ -34,5 +34,9 @@ export class ArticleService {
     return this.http.put<Article>(`http://localhost:3308/Articles/update-article/${productid}`, productData);
   }
    
+  summarizeArticle(id: string): Observable<string> {
+    const url = `http://localhost:3308/Articles/summarize/${id}`;
+    return this.http.post<string>(url, {});
+  }
 
 }
