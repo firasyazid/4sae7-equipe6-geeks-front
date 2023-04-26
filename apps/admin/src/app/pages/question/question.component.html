@@ -1,0 +1,58 @@
+<h1 class="display-4 text-center">Questions</h1>
+
+<!-- Display questions -->
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">description</th>
+      <th scope="col">Quiz</th>
+      <th scope="col">Answers</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let question of questions">
+      <td>{{ question.id }}</td>
+      <td>{{ question.description }}</td>
+      <td>{{ question.quiz.name }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let answer of question.answers">{{ answer.description }}</li>
+        </ul>
+      </td>
+      <td>
+        <button (click)="delete(question)">Delete</button>
+        <button (click)="updateQuestion(question)">Update</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Create question form -->
+<div>
+  <h1>Create Question</h1>
+  <form #createQuestionForm="ngForm" (submit)="createQuestion(createQuestionForm.value)">
+    <label for="description">Question Description</label>
+    <input type="text" [(ngModel)]="createQuestionForm.value.description" name="description" required>
+    <label for="quiz">Quiz</label>
+    <select name="quiz" [(ngModel)]="createQuestionForm.value.quiz" required>
+      <option *ngFor="let quiz of quizzes" [value]="quiz">{{ quiz.name }}</option>
+    </select>
+    <button type="submit">Create</button>
+  </form>
+</div>
+
+<!-- Update question form -->
+<div>
+  <h1>Update Question</h1>
+  <form #updateQuestionForm="ngForm" (submit)="updateQuestion(updateQuestionForm.value)">
+    <label for="description">Question Description</label>
+    <input type="text" [(ngModel)]="updateQuestionForm.value.description" name="description" required>
+    <label for="quiz">Quiz</label>
+    <select name="quiz" [(ngModel)]="updateQuestionForm.value.quiz" required>
+      <option *ngFor="let quiz of quizzes" [value]="quiz">{{ quiz.name }}</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+</div>

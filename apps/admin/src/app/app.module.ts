@@ -40,6 +40,8 @@ import { CodePromoListComponent } from './pages/CodepromoComp/code-promo-list/co
 import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { QuizService } from './quiz.service';
+import { QuestionService } from './question.service';
+import { QuestionComponent } from './pages/question/question.component';
 
 const routes: Routes = [
   {
@@ -125,6 +127,10 @@ const routes: Routes = [
         path: 'quiz',
         component: QuizComponent,
       },
+      {
+        path: 'question',
+        component: QuestionComponent,
+      },
     ],
   },
 ];
@@ -149,6 +155,7 @@ const routes: Routes = [
     CodePromoListComponent,
     CodeformComponent,
     QuizComponent,
+    QuestionComponent,
   ],
   imports: [
     TagModule,
@@ -173,7 +180,7 @@ const routes: Routes = [
     UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService, MessageService, QuizService],
+  providers: [CategoriesService, MessageService, QuizService, QuestionService],
   bootstrap: [AppComponent],
   exports: [
     CollaboratersListComponent,

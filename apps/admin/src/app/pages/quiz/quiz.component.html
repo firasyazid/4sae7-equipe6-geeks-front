@@ -15,7 +15,11 @@
     <tr *ngFor="let quiz of quizzes">
       <td>{{ quiz.id }}</td>
       <td>{{ quiz.name }}</td>
-      <td>{{ quiz.questions}}</td>
+      <td>
+        <ul>
+          <li *ngFor="let question of quiz.questions">{{ question.description }}</li>
+        </ul>
+      </td>
       <button (click)="deleteQuiz(quiz.id)">Delete</button>
     </tr>
   </tbody>
