@@ -1,17 +1,26 @@
 <!-- quiz.component.html -->
-
+<h1 class="display-4 text-center">Quizzes</h1>
 
 <!-- Display quizzes -->
-<div *ngIf="quizzes && quizzes.length > 0">
-  <h1>Quizzes</h1>
-  <ul>
-    <li *ngFor="let quiz of quizzes">
-      {{ quiz.id }}
-      {{ quiz.name }}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">Questions</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let quiz of quizzes">
+      <td>{{ quiz.id }}</td>
+      <td>{{ quiz.name }}</td>
+      <td>{{ quiz.questions}}</td>
       <button (click)="deleteQuiz(quiz.id)">Delete</button>
-    </li>
-  </ul>
-</div>
+    </tr>
+  </tbody>
+</table>
+
 
 <!-- Create quiz form -->
 <div>

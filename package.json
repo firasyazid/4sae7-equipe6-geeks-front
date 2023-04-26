@@ -26,6 +26,7 @@
     "@stripe/stripe-js": "^1.37.0",
     "angular-environment": "^1.0.8",
     "animate.css": "^4.1.1",
+    "bootstrap": "^5.2.3",
     "hmpo-countries-lib": "^5.0.5",
     "ngx-stripe": "^14.1.0",
     "normalize.css": "^8.0.1",

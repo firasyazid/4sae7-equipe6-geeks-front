@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../../quiz.service';
 import { Quiz } from '../../Model/Quiz';
 
+
 @Component({
   selector: 'app-quiz', // Update with the selector for your quiz component
   templateUrl: './quiz.component.html', // Update with the correct file path for your template file
