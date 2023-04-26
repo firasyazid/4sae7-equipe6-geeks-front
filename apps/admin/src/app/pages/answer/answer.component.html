@@ -1,0 +1,41 @@
+<!-- answer.component.html -->
+<h1 class="display-4 text-center">Answers</h1>
+
+<!-- Display Answers -->
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Answer</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let answer of answers">
+      <td>{{ answer.id }}</td>
+      <td>{{ answer.description }}</td>
+      <button (click)="deleteAnswer(answer.id)">Delete</button>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Create answer form -->
+<div>
+  <h1>Create Answer</h1>
+  <form #createAnswerForm="ngForm" (submit)="createAnswer(createAnswerForm.value)">
+    <label for="description">Answer Name</label>
+    <input type="text" [(ngModel)]="createAnswerForm.value.description" description="description" required>
+    <button type="submit">Create</button>
+  </form>
+</div>
+
+<!-- Update answer form -->
+<div>
+  <h1>Update Answer</h1>
+  <form #updateAnswerForm="ngForm" (submit)="updateAnswer(updateAnswerForm.value)">
+    <label for="description">Answer Name</label>
+    <input type="text" [(ngModel)]="updateAnswerForm.value.description" description="description" required>
+    <button type="submit">Update</button>
+  </form>
+</div>

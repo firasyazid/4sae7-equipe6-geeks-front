@@ -42,6 +42,8 @@ import { QuizComponent } from './pages/quiz/quiz.component';
 import { QuizService } from './Service/quiz.service';
 import { QuestionService } from './Service/question.service';
 import { QuestionComponent } from './pages/question/question.component';
+import { AnswerComponent } from './pages/answer/answer.component';
+import { AnswerService } from './Service/answer.service';
 
 const routes: Routes = [
   {
@@ -131,6 +133,10 @@ const routes: Routes = [
         path: 'question',
         component: QuestionComponent,
       },
+      {
+        path: 'answer',
+        component: AnswerComponent,
+      },
     ],
   },
 ];
@@ -156,6 +162,7 @@ const routes: Routes = [
     CodeformComponent,
     QuizComponent,
     QuestionComponent,
+    AnswerComponent,
   ],
   imports: [
     TagModule,
@@ -180,7 +187,7 @@ const routes: Routes = [
     UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService, MessageService, QuizService, QuestionService],
+  providers: [CategoriesService, MessageService, QuizService, QuestionService, AnswerService],
   bootstrap: [AppComponent],
   exports: [
     CollaboratersListComponent,
