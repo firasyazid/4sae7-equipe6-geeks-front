@@ -38,12 +38,14 @@ import { OrderDetailsComponent } from './pages/orders/order-details/order-detail
 import { FieldsetModule } from 'primeng/fieldset';
 import { CodePromoListComponent } from './pages/CodepromoComp/code-promo-list/code-promo-list.component';
 import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.component';
+import { QuizComponent } from './pages/quiz/quiz.component';
+import { QuizService } from './quiz.service';
 
 const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-     children: [
+    children: [
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -118,8 +120,11 @@ const routes: Routes = [
       {
         path: 'codepromo/form/:id',
         component: CodeformComponent,
-      }
-
+      },
+      {
+        path: 'quiz',
+        component: QuizComponent,
+      },
     ],
   },
 ];
@@ -143,6 +148,7 @@ const routes: Routes = [
     OrderDetailsComponent,
     CodePromoListComponent,
     CodeformComponent,
+    QuizComponent,
   ],
   imports: [
     TagModule,
@@ -167,7 +173,7 @@ const routes: Routes = [
     UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService, MessageService],
+  providers: [CategoriesService, MessageService, QuizService],
   bootstrap: [AppComponent],
   exports: [
     CollaboratersListComponent,

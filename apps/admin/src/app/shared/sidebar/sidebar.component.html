@@ -17,7 +17,7 @@
         <a routerLink="/collab"><i class="pi pi-id-card"></i> Collaboraters</a>
       </li>
       <li>
-        <a routerLink="/orders"><i class="pi pi-shopping-cart"></i>Orders</a>
+        <a routerLink="/orders"><i class="pi pi-shopping-cart"></i> Orders</a>
       </li>
       <li>
         <a routerLink="/users"><i class="pi pi-users"></i> Users</a>
@@ -26,6 +26,14 @@
         <a routerLink="/codepromo"><i class="pi pi-users"></i> CodePromo</a>
       </li>
 
+      <li class="panel-menu">
+        <a (click)="toggleCoursesMenu()"><i class="pi pi-briefcase"></i> Courses <i class="pi pi-chevron-down"></i></a>
+        <ul *ngIf="showCoursesMenu">
+          <li><a routerLink="/quiz"><i class="pi pi-check"></i> Quiz</a></li>
+          <li><a routerLink="/Courses/Question"><i class="pi pi-question-circle"></i> Question</a></li>
+        </ul>
+      </li>
+      
       <li class="logout">
         <a><i class="pi pi-sign-out" (click)="logoutUser()"></i> Logout</a>
       </li>

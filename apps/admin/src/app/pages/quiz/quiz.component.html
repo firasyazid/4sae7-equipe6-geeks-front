@@ -1,0 +1,34 @@
+<!-- quiz.component.html -->
+
+
+<!-- Display quizzes -->
+<div *ngIf="quizzes && quizzes.length > 0">
+  <h1>Quizzes</h1>
+  <ul>
+    <li *ngFor="let quiz of quizzes">
+      {{ quiz.id }}
+      {{ quiz.name }}
+      <button (click)="deleteQuiz(quiz.id)">Delete</button>
+    </li>
+  </ul>
+</div>
+
+<!-- Create quiz form -->
+<div>
+  <h1>Create Quiz</h1>
+  <form #createQuizForm="ngForm" (submit)="createQuiz(createQuizForm.value)">
+    <label for="name">Quiz Name</label>
+    <input type="text" [(ngModel)]="createQuizForm.value.name" name="name" required>
+    <button type="submit">Create</button>
+  </form>
+</div>
+
+<!-- Update quiz form -->
+<div>
+  <h1>Update Quiz</h1>
+  <form #updateQuizForm="ngForm" (submit)="updateQuiz(updateQuizForm.value)">
+    <label for="name">Quiz Name</label>
+    <input type="text" [(ngModel)]="updateQuizForm.value.name" name="name" required>
+    <button type="submit">Update</button>
+  </form>
+</div>

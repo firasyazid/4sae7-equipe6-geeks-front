@@ -1,7 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "files": [],
-  "include": [],
+  "include": [
+    "src/Model/**/*.ts" // Update the file path to include the Model directory
+  ],
   "references": [
     {
       "path": "./tsconfig.app.json"

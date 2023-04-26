@@ -1,0 +1,15 @@
+/* quiz.component.scss */
+
+/* Example SCSS code */
+.quiz-container {
+    margin: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+  }
+  
+  .quiz-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
