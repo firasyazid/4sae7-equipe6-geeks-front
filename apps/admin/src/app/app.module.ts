@@ -39,8 +39,8 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { CodePromoListComponent } from './pages/CodepromoComp/code-promo-list/code-promo-list.component';
 import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
-import { QuizService } from './quiz.service';
-import { QuestionService } from './question.service';
+import { QuizService } from './Service/quiz.service';
+import { QuestionService } from './Service/question.service';
 import { QuestionComponent } from './pages/question/question.component';
 
 const routes: Routes = [

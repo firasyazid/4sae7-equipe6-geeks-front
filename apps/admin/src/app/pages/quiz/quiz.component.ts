@@ -1,7 +1,7 @@
 // quiz.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from '../../quiz.service';
+import { QuizService } from '../../Service/quiz.service';
 import { Quiz } from '../../Model/Quiz';
 
 
