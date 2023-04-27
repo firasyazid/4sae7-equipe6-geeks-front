@@ -44,6 +44,8 @@ import { QuestionService } from './Service/question.service';
 import { QuestionComponent } from './pages/question/question.component';
 import { AnswerComponent } from './pages/answer/answer.component';
 import { AnswerService } from './Service/answer.service';
+import { ListAllComponent } from './admin/src/app/hana/user/list-all/list-all.component';
+import { AddComponent } from './admin/user/add/add.component';
 
 const routes: Routes = [
   {
@@ -163,6 +165,8 @@ const routes: Routes = [
     QuizComponent,
     QuestionComponent,
     AnswerComponent,
+    ListAllComponent,
+    AddComponent,
   ],
   imports: [
     TagModule,
@@ -187,7 +191,13 @@ const routes: Routes = [
     UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService, MessageService, QuizService, QuestionService, AnswerService],
+  providers: [
+    CategoriesService,
+    MessageService,
+    QuizService,
+    QuestionService,
+    AnswerService,
+  ],
   bootstrap: [AppComponent],
   exports: [
     CollaboratersListComponent,
