@@ -11,3 +11,6 @@ export * from './lib/services/users.service';
 export * from './lib/models/article';
 export * from './lib/services/article.service';
 
+export * from './lib/models/chat';
+
+export * from './lib/services/chat.service';

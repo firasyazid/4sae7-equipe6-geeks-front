@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import {Claim,ClaimService } from '@eshop/orders';
+import { ToastrService } from 'ngx-toastr';
 
-
+ 
 @Component({
   selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
@@ -19,14 +20,15 @@ export class CategoriesListComponent implements OnInit {
 
   constructor(private claimsServicece : ClaimService,
              private messageService : MessageService,
-            private router: Router) { }
+            private router: Router,private toastr: ToastrService
+            ) { }
   ngOnInit(): void {
     this._getClaims() ; 
   }
 
   deleteClaim(claimId: string) {
 this.claimsServicece.deleteClaim(claimId).subscribe( () => { 
-  this._getClaims();
+   this._getClaims();
   this.messageService.add({severity:'success', summary:' success', detail:'Claim deleted'});
 });
 }

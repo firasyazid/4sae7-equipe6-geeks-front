@@ -38,6 +38,8 @@ import { OrderDetailsComponent } from './pages/orders/order-details/order-detail
 import { FieldsetModule } from 'primeng/fieldset';
 import { CodePromoListComponent } from './pages/CodepromoComp/code-promo-list/code-promo-list.component';
 import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
   {
@@ -118,8 +120,11 @@ const routes: Routes = [
       {
         path: 'codepromo/form/:id',
         component: CodeformComponent,
+      },
+      {
+        path: 'chat',
+        component: ChatComponent,
       }
-
     ],
   },
 ];
@@ -128,7 +133,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     NxWelcomeComponent,
-    DashboardComponent,
+     DashboardComponent,
     ShellComponent,
     SidebarComponent,
     CategoriesListComponent,
@@ -143,6 +148,7 @@ const routes: Routes = [
     OrderDetailsComponent,
     CodePromoListComponent,
     CodeformComponent,
+    ChatComponent,
   ],
   imports: [
     TagModule,
@@ -155,6 +161,7 @@ const routes: Routes = [
     CardModule,
     DropdownModule,
     ToastModule,
+    ToastrModule.forRoot() ,
     ToolbarModule,
     ButtonModule,
     TableModule,
@@ -176,6 +183,7 @@ const routes: Routes = [
     OrderDetailsComponent,
     CodePromoListComponent,
     CodeformComponent,
+    ChatComponent,
   ],
 })
 export class AppModule {}

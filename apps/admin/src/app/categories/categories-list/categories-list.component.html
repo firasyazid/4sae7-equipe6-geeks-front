@@ -10,7 +10,6 @@
             </p-toolbar>
         </div>
         <div class="p-grid">
-
             <div class="p-col-12">
                 <p-table
                 [paginator]="true"
@@ -32,8 +31,6 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-claims>
                         <tr>
-
-                            
                             <td>{{claims.description }}</td>
                             <td>{{claims.title}} </td>
                             <td>{{claims.date| date: 'short' }} </td>
