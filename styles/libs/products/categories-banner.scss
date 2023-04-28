@@ -5,7 +5,32 @@
     margin-bottom: 20px;
     color: var(--surface-700);
   }
-
+  .ui-dialog {
+    width: 400px;
+    max-width: 90%;
+  }
+  
+  .ui-dialog-titlebar {
+    background-color: #007ad9;
+    color: white;
+    border: none;
+  }
+  
+  .ui-dialog-content {
+    padding: 1rem;
+  }
+  
+  .ui-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: none;
+  }
+  
+  .ui-dialog-footer button {
+    margin-left: 1rem;
+  }
+  
   .category {
      min-height: 100px;
      border-radius: 14px;

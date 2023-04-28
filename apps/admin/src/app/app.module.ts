@@ -40,6 +40,7 @@ import { CodePromoListComponent } from './pages/CodepromoComp/code-promo-list/co
 import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DialogModule } from 'primeng/dialog';
 
 const routes: Routes = [
   {
@@ -151,7 +152,7 @@ const routes: Routes = [
     ChatComponent,
   ],
   imports: [
-    TagModule,
+    TagModule,DialogModule,
     BrowserModule,
     EditorModule,
     ColorPickerModule,

@@ -5,10 +5,40 @@
         <div class="p-col-12">
             <p-toolbar>
                 <div class="p-toolbar-group-left">
-                    <p-button label="New" icon="pi pi-plus" routerLink="form"></p-button>
+                    <p-button label="New" icon="pi pi-plus"  (click)="displayDialog = true"></p-button>
                 </div>
             </p-toolbar>
         </div>
+        <p-dialog header="Add Claim" [(visible)]="displayDialog" [responsive]="true" [modal]="isModal"
+        [style]="{width: '50%', height: '40%'}">
+            <form #addClaimForm="ngForm" (ngSubmit)="_addClaim(newClaim)">
+              <div class="p-fluid">
+                <div class="p-field">
+                  <label for="description">Description</label>
+                  <input id="description" type="text" pInputText placeholder="Enter description" name="description"
+                    [(ngModel)]="newClaim.description" required />
+                </div>
+                <div class="p-field">
+                  <label for="title">Title</label>
+                  <input id="title" type="text" pInputText placeholder="Enter title" name="title"
+                    [(ngModel)]="newClaim.title" required />
+                </div>
+                <div class="p-field">
+                  <label for="date">Date</label>
+                  <input type="date" id="date" name="date" [(ngModel)]="newClaim.date">
+                </div>
+                <div class="p-field">
+                    <label for="title">Title</label>
+                    <input id="status" type="text" pInputText placeholder="Enter status" name="status"
+                      [(ngModel)]="newClaim.status" required />
+                   </div>
+              </div>
+              <p-footer>
+                <button type="submit" pButton label="Save" ></button>
+                <button type="button" pButton label="Cancel" (click)="displayDialog = false"></button>
+              </p-footer>
+            </form>
+          </p-dialog>
         <div class="p-grid">
             <div class="p-col-12">
                 <p-table

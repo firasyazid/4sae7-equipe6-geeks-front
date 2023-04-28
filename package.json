@@ -59,6 +59,7 @@
     "@nrwl/workspace": "14.7.13",
     "@pmachaux/ng-cli-tsc-builder": "^1.0.2",
     "@types/jest": "28.1.8",
+    "@types/jquery": "^3.5.16",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.1",
