@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../Service/question.service';
 import { QuizService } from '../../Service/quiz.service';
+import { AnswerService } from '../../Service/answer.service';
 import { Question } from '../../Model/Quiz';
 import { Quiz } from '../../Model/Quiz';
+import { Answer } from '../../Model/Quiz';
+  
+
 
 @Component({
   selector: 'app-question',
@@ -12,15 +16,26 @@ import { Quiz } from '../../Model/Quiz';
 export class QuestionComponent implements OnInit {
   questions: Question[];
   quizzes: Quiz[];
+  answers: Answer[];
+  showAddDialog: boolean = false;
+  globalFilterValue: string;
+
 
   constructor(
     private questionService: QuestionService,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private answerService: AnswerService
   ) {}
 
   ngOnInit(): void {
     this.getQuestions();
     this.getQuizzes();
+    this.getAnswers();
+  }
+
+  getAnswers(): void {
+    this.answerService.getAnswers()
+      .subscribe(answers => this.answers = answers);
   }
 
   getQuestions(): void {
@@ -33,6 +48,14 @@ export class QuestionComponent implements OnInit {
       .subscribe(quizzes => this.quizzes = quizzes);
   }
 
+  newQuestion: Question = {
+    id: null,
+    description: '',
+    quiz: null,
+    answers: []
+  };
+
+
   createQuestion(question: Question) {
     this.questionService.createQuestion(question).subscribe(
       (createdQuestion: Question) => {
@@ -44,6 +67,21 @@ export class QuestionComponent implements OnInit {
       }
     );
   }
+
+  addQuestion(question: Question): void {
+    this.questionService.createQuestion(question).subscribe(
+      (createdQuestion: Question) => {
+        // Handle success
+        console.log('Question created:', createdQuestion);
+        this.showAddDialog = false; // Close the dialog
+        this.getQuestions(); // Refresh the question list
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
 
   delete(question: Question): void {
     this.questions = this.questions.filter(q => q !== question);

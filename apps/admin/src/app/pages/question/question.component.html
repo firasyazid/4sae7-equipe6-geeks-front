@@ -1,58 +1,90 @@
 <h1 class="display-4 text-center">Questions</h1>
 
 <!-- Display questions -->
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">description</th>
-      <th scope="col">Quiz</th>
-      <th scope="col">Answers</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let question of questions">
-      <td>{{ question.id }}</td>
-      <td>{{ question.description }}</td>
-      <td>{{ question.quiz.name }}</td>
-      <td>
-        <ul>
-          <li *ngFor="let answer of question.answers">{{ answer.description }}</li>
-        </ul>
-      </td>
-      <td>
-        <button (click)="delete(question)">Delete</button>
-        <button (click)="updateQuestion(question)">Update</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="p-col-12">
+  <p-card header="Question" subheader="List of all Questions">
 
-<!-- Create question form -->
-<div>
-  <h1>Create Question</h1>
-  <form #createQuestionForm="ngForm" (submit)="createQuestion(createQuestionForm.value)">
-    <label for="description">Question Description</label>
-    <input type="text" [(ngModel)]="createQuestionForm.value.description" name="description" required>
-    <label for="quiz">Quiz</label>
-    <select name="quiz" [(ngModel)]="createQuestionForm.value.quiz" required>
-      <option *ngFor="let quiz of quizzes" [value]="quiz">{{ quiz.name }}</option>
-    </select>
-    <button type="submit">Create</button>
-  </form>
-</div>
 
-<!-- Update question form -->
-<div>
-  <h1>Update Question</h1>
-  <form #updateQuestionForm="ngForm" (submit)="updateQuestion(updateQuestionForm.value)">
-    <label for="description">Question Description</label>
-    <input type="text" [(ngModel)]="updateQuestionForm.value.description" name="description" required>
-    <label for="quiz">Quiz</label>
-    <select name="quiz" [(ngModel)]="updateQuestionForm.value.quiz" required>
-      <option *ngFor="let quiz of quizzes" [value]="quiz">{{ quiz.name }}</option>
-    </select>
-    <button type="submit">Update</button>
-  </form>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <!-- ADD BUTTON -->
+            <p-button label="New" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
+            <!-- ADD QUESTION DIALOG -->
+            <p-dialog header="Add Question" [(visible)]="showAddDialog" [responsive]="true">
+              <form #addQuestionForm="ngForm" (ngSubmit)="createQuestion(newQuestion)">
+                <div class="p-fluid">
+                  <div class="p-field">
+                    <label for="description">Description</label>
+                    <input id="description" type="text" pInputText placeholder="Enter description" name="description"
+                      [(ngModel)]="newQuestion.description" required />
+                  </div>
+                  <div class="p-field">
+                    <label for="quiz">Quiz</label>
+                    <p-dropdown [options]="quizzes" [(ngModel)]="newQuestion.quiz" optionLabel="name"
+                      placeholder="Select a quiz" name="quiz" [required]="true"></p-dropdown>
+                  </div>
+                  <!--
+                  <div class="p-field">
+                    <label for="quiz">Answers</label>
+                    <p-dropdown [options]="answers" [(ngModel)]="newQuestion.answers" optionLabel="description" placeholder="Select answers" name="answer" [required]="true" multiple="true"></p-dropdown>
+                  </div>
+                  -->
+                </div>
+                <p-footer>
+                  <button type="submit" pButton label="Save"></button>
+                  <button type="button" pButton label="Cancel" (click)="showAddDialog = false"></button>
+                </p-footer>
+              </form>
+            </p-dialog>
+            <!-- search-->
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText placeholder="Search..." [(ngModel)]="globalFilterValue" class="p-inputtext-sm p-mr-2">
+            </span>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table [paginator]="true" [rows]="5" [value]="questions" styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['description']" >
+          <ng-template pTemplate="header">
+            <tr>
+              <!-- Use correct field names for sorting -->
+              <th pSortableColumn="description">
+                Description <p-sortIcon field="description"></p-sortIcon>
+              </th>
+              <th pSortableColumn="quiz.name">
+                Quiz <p-sortIcon field="quiz.name"></p-sortIcon>
+              </th>
+              <th pSortableColumn="answers.length">
+                Answers <p-sortIcon field="answers.length"></p-sortIcon>
+              </th>
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-question>
+            <tr>
+              <td>{{ question.description }}</td>
+              <td>{{ question.quiz.name }}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let answer of question.answers">{{ answer.description }}</li>
+                </ul>
+              </td>
+              <td>
+                <!--DELETE  BUTTON-->
+                <p-button (click)="delete(question)" styleClass="p-button-danger p-mr-5" icon="pi pi-trash"></p-button>
+                <!--UPDATE BUTTON-->
+                <p-button styleClass="p-button-info" icon="pi pi-pencil"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
 </div>

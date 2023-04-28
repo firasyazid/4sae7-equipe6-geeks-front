@@ -44,6 +44,9 @@ import { QuestionService } from './Service/question.service';
 import { QuestionComponent } from './pages/question/question.component';
 import { AnswerComponent } from './pages/answer/answer.component';
 import { AnswerService } from './Service/answer.service';
+import { DialogModule } from 'primeng/dialog';
+
+
 
 const routes: Routes = [
   {
@@ -170,6 +173,7 @@ const routes: Routes = [
     EditorModule,
     ColorPickerModule,
     ConfirmDialogModule,
+    DialogModule,
     BrowserAnimationsModule,
     InputNumberModule,
     CardModule,
