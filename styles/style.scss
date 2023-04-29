@@ -6,3 +6,47 @@
 } .button-container {
     margin-bottom: 10px; /* add 10px margin at the bottom */
 }
+:host ::ng-deep .p-dialog {
+    width: 80vw !important;
+    height: 80vh !important;
+  }
+  
+  :host ::ng-deep .p-dialog-content {
+    height: calc(100% - 60px) !important;
+  }
+  
+  :host ::ng-deep .p-dialog-content .p-field {
+    height: calc(100% - 60px) !important;
+  }
+  
+  :host ::ng-deep textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+  }
+  .ui-dialog {
+    font-family: Arial, sans-serif;
+  }
+  
+  .ui-dialog-header {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .ui-dialog-content {
+    padding: 20px;
+  }
+  
+  .ui-dialog-footer {
+    text-align: right;
+    padding: 10px 20px;
+  }
+  
+  .ui-button-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #ccc;
+  }
+  

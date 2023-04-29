@@ -22,6 +22,7 @@
     "@angular/platform-browser": "14.2.3",
     "@angular/platform-browser-dynamic": "14.2.3",
     "@angular/router": "14.2.3",
+    "@coreui/angular": "^4.4.7",
     "@nrwl/angular": "14.7.13",
     "@stomp/stompjs": "^7.0.0",
     "@stripe/stripe-js": "^1.37.0",

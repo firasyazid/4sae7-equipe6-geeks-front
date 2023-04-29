@@ -18,8 +18,7 @@ export class CategoriesListComponent implements OnInit {
   claims: Claim[] = [];
   displayDialog = false;
   isModal = false;
-  selectedClaimId: string;
-  displayDialog2 = false;
+   displayDialog2 = false;
   displayUpdateDialog = false;
   selectedClaim: Claim;
   showDeleteModal = false;

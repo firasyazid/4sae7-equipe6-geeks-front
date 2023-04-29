@@ -5,14 +5,42 @@
         <div class="p-col-12">
             <p-toolbar>
                 <div class="p-toolbar-group-left">
-                    <p-button label="New" icon="pi pi-plus"   routerLink="form"
-                    ></p-button>
-                </div>
+                    <p-button label="New" icon="pi pi-plus"  (click)="displayDialog2 = true"></p-button>
+                 </div>
             </p-toolbar>
         </div>
         
-      
-          
+        <p-dialog header="Add Claim" [(visible)]="displayDialog2" [responsive]="true" [modal]="isModal"
+        [style]="{width: '50%', height: '40%'}">
+            <form #addClaimForm="ngForm" (ngSubmit)="_addArticle(convertToFormData(newClaim))">
+              <div class="p-fluid">
+                <div class="p-field">
+                  <label for="description">Description</label>
+                  <input id="description" type="text" pInputText placeholder="Enter description" name="description"
+                    [(ngModel)]="newClaim.description" required />
+                </div>
+                <div class="p-field">
+                  <label for="title">Title</label>
+                  <input id="title" type="text" pInputText placeholder="Enter contenu" name="contenu"
+                    [(ngModel)]="newClaim.contenu" required />
+                </div>
+
+                <div class="p-field">
+                  <label for="date">Image</label>
+                  <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)"  />
+                  <div class="p-col-2 p-mt-2 p-pl-0">
+                    <img style="width: 50%" [src]="imageDisplay" alt="" />
+                </div>
+                </div>
+                 
+              </div>
+              <p-footer>
+                <button type="submit" pButton label="Save" ></button>
+                <button type="button" pButton label="Cancel" (click)="displayDialog2 = false"></button>
+              </p-footer>
+            </form>
+          </p-dialog>
+       
 
         <div class="p-grid">
 
@@ -38,34 +66,22 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-articles>
                         <tr>
-                            <td>{{articles.description }}</td>
-                            <td>{{articles.contenu }}</td>
-                            <td>
-                            <img [src]="'http://localhost:3308' + articles.image" alt="Article image" width="70">
-                            </td>
-                            <td>{{articles.summary}}</td>
-                            <td>
-                                <div class="button-container">
-
-                                <p-button 
-                                (onClick)="deleteArticle(articles.id)"
-                                styleClass="p-button-danger -p-mr-5"
-                                    icon="pi pi-trash"></p-button>      
-
-                                    <p-button (click)="updateArticle(articles.id)"
-                                     styleClass="p-button-success" icon="pi pi-pencil">
-                                    </p-button> 
-                                    <span >
-                                        <p-button (click)="summarizeArticle(articles.id )"
-                                        label="Summary" styleClass="p-button-rounded" ></p-button>
-                                    </span>
-                                </div>
-
-
-                                <td>
-                             </tr>
-                             
-                    </ng-template>
+                          <td>{{articles.description}}</td>
+ 
+                          <td><button pButton type="button" label="Show Content" (click)="showDialog(articles.contenu)"></button></td>
+                          <td><img [src]="'http://localhost:3308' + articles.image" alt="Article image" width="70"></td>
+                          <td>{{articles.summary}}</td>
+                          <td>
+                            <div class="button-container">
+                              <p-button (onClick)="deleteArticle(articles.id)" styleClass="p-button-danger -p-mr-5" icon="pi pi-trash"></p-button>      
+                              <p-button (click)="updateArticle(articles.id)" styleClass="p-button-success" icon="pi pi-pencil"></p-button> 
+                              <span >
+                                <p-button (click)="summarizeArticle(articles.id)" label="Summary" styleClass="p-button-rounded"></p-button>
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </ng-template>
                 </p-table>
 
             </div>
@@ -73,5 +89,18 @@
         </div>
 
     </p-card>
-
+    <p-dialog header="Article Content" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [style]="{width: '50vw', 'max-height': '80vh', 'overflow-y': 'auto', 'border-radius': '10px', 'box-shadow': '0px 0px 20px rgba(0, 0, 0, 0.3)'}">
+        <div class="p-fluid">
+          <div class="p-field">
+            <label for="articleContent"> </label> 
+            <textarea id="articleContent" pInputTextarea rows="20" [(ngModel)]="selectedArticleContent" readonly></textarea>
+        </div>
+        </div>
+        <p-footer>
+          <button pButton type="button" label="Close"  (click)="hideDialog()"></button>
+        </p-footer>
+      </p-dialog>
+      
+      
+      
 </div>
