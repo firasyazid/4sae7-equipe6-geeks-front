@@ -28,4 +28,10 @@ import { Claim } from '../../models/claim';
     getclaimByid(claimid: string): Observable<Claim> {
       return this.http.get<Claim>(` http://localhost:3308/Claims/find-claim/${claimid}`);
     }
+    getClaimsCount(): Observable<number> {
+      return this.http
+        .get<number>(`http://localhost:3308/Claims/countClaims`)
+     }
+
+
  }

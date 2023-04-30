@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersService } from '@eshop/orders';
+import { ClaimService, OrdersService } from '@eshop/orders';
 import { ProductsService, UsersService,CollaboraterService } from '@eshop/products';
 import { combineLatest } from 'rxjs';
+import { Article, ArticleService } from '@eshop/products';
 
 @Component({
   selector: 'admin-dashboard',
@@ -18,36 +19,30 @@ export class DashboardComponent implements OnInit {
     private productService: ProductsService,
     private CollaboraterService: CollaboraterService,
     private ordersService:OrdersService,
-    
+    private art:ArticleService,
+    private claim : ClaimService
+
    ) {}
 
   ngOnInit(): void {
     combineLatest([
-       this.userService.getUsersCount(),
+       this.art.getArticlsCount(),
       ]).subscribe((values) => {
       this.statistics = values;
+      console.log(values)
  
     });
-
     combineLatest([
-      this.productService.getServiceCount(),
-   ]).subscribe((values) => {
-    this.statisticsS = values;
-  });
+      this.claim.getClaimsCount(),
+     ]).subscribe((values) => {
+     this.statisticsS = values;
+     console.log(values)
 
-  combineLatest([
-    this.CollaboraterService.getUsersCount(),
- ]).subscribe((values) => {
-  this.statisticsC = values;
-});
+   });
 
-combineLatest([
-  this.ordersService.getUsersCount(),
-]).subscribe((values) => {
-this.statisticsOrder = values;
-});
+
  }
 
   }
 
- 
+

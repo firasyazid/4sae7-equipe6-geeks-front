@@ -41,8 +41,11 @@ import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.compo
 import { ChatComponent } from './pages/chat/chat.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DialogModule } from 'primeng/dialog';
- 
-const routes: Routes = [
+import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { ChartjsModule } from '@coreui/angular-chartjs';
+
+
+ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
@@ -125,6 +128,10 @@ const routes: Routes = [
       {
         path: 'chat',
         component: ChatComponent,
+      }, 
+      {
+        path: 'stat',
+        component: StatisticsComponent,
       }
     ],
   },
@@ -150,9 +157,9 @@ const routes: Routes = [
     CodePromoListComponent,
     CodeformComponent,
     ChatComponent,
-  ],
+   ],
   imports: [
-    TagModule,DialogModule,
+    TagModule,DialogModule,ChartjsModule,
     BrowserModule,
     EditorModule,
     ColorPickerModule,

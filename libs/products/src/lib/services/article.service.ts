@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
  import { Article } from '../models/article';
  
 
@@ -39,7 +39,10 @@ export class ArticleService {
     return this.http.post<string>(url, {});
   }
 
-
+  getArticlsCount(): Observable<number> {
+    return this.http
+      .get<number>(`http://localhost:3308/Articles/countArticles`)
+   }
 
   
 }
