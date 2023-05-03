@@ -1,0 +1,44 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card header="appointments" subheader="List of all appointments">
+        <div class="p-grid"> </div>
+        <div class="p-col-12">
+
+            <p-toolbar>
+
+                <div class="p-toolbar-group-left">
+                    <p-button label="New" icon="pi pi-plus" routerLink="form"></p-button>
+
+                </div>
+
+
+            </p-toolbar>
+        </div>
+
+        <div class="p-grid">
+
+            <div class="p-col-12">
+                <p-table [value]="appointements" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>ID</th>
+                            <th>DATE</th>
+                            
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-APP>
+                        <tr>
+                            <td>{{ APP.id }}</td>
+                            <td>{{ APP.date }}</td>
+                           
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+
+    </p-card>
+
+</div>
