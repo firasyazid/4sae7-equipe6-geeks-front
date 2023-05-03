@@ -12,13 +12,13 @@ import { map } from 'rxjs/operators';
 )
 
 export class appointmentService {
-  private apiUrl = '/Appointment'
+  private apiUrl = 'http://localhost:8087/SpringMVCt'
 
   constructor(private http: HttpClient) { }
 
   //Get all appointments
   getappointments(): Observable<appointment[]>{
-    return this.http.get<appointment[]>(this.apiUrl);
+    return this.http.get<appointment[]>(this.apiUrl + "/Appointment");
   }
 
 // Create a appointment
