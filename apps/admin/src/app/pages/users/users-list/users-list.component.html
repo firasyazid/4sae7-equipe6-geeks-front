@@ -17,48 +17,68 @@
     </div>
     <div class="p-grid">
       <div class="p-col-12">
- 
 
-        <p-table [paginator]="true"
-        [rows]="3"
-        [value]="users"
-        styleClass="p-datatable-gridlines"
-        [globalFilterFields]="['name']"
-       styleClass="p-datatable-gridlines">
+
+<!--        <p-table [paginator]="true"-->
+<!--        [value]="users"-->
+<!--        styleClass="p-datatable-gridlines"-->
+<!--        [globalFilterFields]="['name']"-->
+<!--       styleClass="p-datatable-gridlines">-->
+<!--          <ng-template pTemplate="header">-->
+<!--            <tr>-->
+<!--              <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>-->
+<!--              <th>password</th>-->
+<!--              <th>enabled</th>-->
+<!--              </tr>-->
+<!--          </ng-template>-->
+<!--          <ng-template pTemplate="body" let-user>-->
+<!--            <tr>-->
+<!--              <td>{{ user.userName }}</td>-->
+<!--              <td>{{ user.password }}</td>-->
+<!--              <td>-->
+<!--                <p-tag-->
+<!--                  *ngIf="user.enabled"-->
+<!--                  icon="pi pi-check"-->
+<!--                  severity="success"-->
+<!--                 ></p-tag>-->
+<!--                <p-tag-->
+<!--                  *ngIf="!user.enabled"-->
+<!--                  icon="pi pi-times"-->
+<!--                  severity="danger"-->
+<!--                 ></p-tag>-->
+<!--               <td>-->
+<!--&lt;!&ndash;                <p-button&ndash;&gt;-->
+<!--&lt;!&ndash;                (click)="deleteUser(user._id)"&ndash;&gt;-->
+<!--&lt;!&ndash;                   styleClass="p-button-danger p-mr-2"&ndash;&gt;-->
+<!--&lt;!&ndash;                  icon="pi pi-trash"&ndash;&gt;-->
+<!--&lt;!&ndash;                ></p-button>&ndash;&gt;-->
+<!--                <p-button-->
+<!--                (click)="updateUser(user._id)"-->
+<!--                   styleClass="p-button-success"-->
+<!--                  icon="pi pi-pencil"-->
+<!--                ></p-button>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </ng-template>-->
+<!--        </p-table>-->
+
+        <p-table [value]="users" [tableStyle]="{'min-width': '60rem'}">
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-              <th>Email</th>
-              <th>IsAdmin</th>
-              </tr>
+              <th pSortableColumn="id" style="width:20%">Id <p-sortIcon field="id"></p-sortIcon></th>
+              <th pSortableColumn="username" style="width:20%">userName <p-sortIcon field="username"></p-sortIcon></th>
+              <th pSortableColumn="password" style="width:20%">password <p-sortIcon field="password"></p-sortIcon></th>
+              <th pSortableColumn="tel" style="width:20%">phone <p-sortIcon field="tel"></p-sortIcon></th>
+              <th pSortableColumn="email" style="width:20%">email <p-sortIcon field="email"></p-sortIcon></th>
+            </tr>
           </ng-template>
           <ng-template pTemplate="body" let-user>
             <tr>
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <td>
-                <p-tag
-                  *ngIf="user.isAdmin"
-                  icon="pi pi-check"
-                  severity="success"
-                 ></p-tag>
-                <p-tag
-                  *ngIf="!user.isAdmin"
-                  icon="pi pi-times"
-                  severity="danger"
-                 ></p-tag>
-               <td>
-                <p-button
-                (click)="deleteUser(user._id)"
-                   styleClass="p-button-danger p-mr-2"
-                  icon="pi pi-trash"
-                ></p-button>
-                <p-button
-                (click)="updateUser(user._id)"
-                   styleClass="p-button-success"
-                  icon="pi pi-pencil"
-                ></p-button>
-              </td>
+              <td>{{user.id}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.password}}</td>
+              <td>{{user.tel}}</td>
+              <td>{{user.email }}</td>
             </tr>
           </ng-template>
         </p-table>

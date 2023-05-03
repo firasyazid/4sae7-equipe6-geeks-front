@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
- import { User, UsersService } from '@eshop/products';
 import { MessageService } from 'primeng/api';
- 
- 
+import {User} from "../../../Entities/User";
+import {UserService} from "../../../Services/userService/user.service";
+
 
 @Component({
   selector: 'admin-users-list',
@@ -11,9 +11,9 @@ import { MessageService } from 'primeng/api';
 })
 export class UsersListComponent implements OnInit {
   users: User[] = [];
-  
+
   constructor(
-    private usersService: UsersService,
+    private usersService: UserService,
     private router: Router,
     private messageService : MessageService,
 
@@ -25,21 +25,22 @@ export class UsersListComponent implements OnInit {
 
   }
   private _getUsers() {
-    this.usersService.getUsers().subscribe((users) => {
+    this.usersService.getAllUsers().subscribe((users) => {
+      console.log(users) ;
       this.users = users;
     });
   }
   updateUser(userid: string) {
     this.router.navigateByUrl(`users/form/${userid}`);
   }
-    
-  deleteUser(userId: string) {
-    this.usersService.deleteUser(userId).subscribe( () => { 
-      this._getUsers();
-      this.messageService.add({severity:'success', summary:' success', detail:'User deleted'});
-    });
 
-  
-  }
+  // deleteUser(userId: string) {
+  //   this.usersService.deleteUser(userId).subscribe( () => {
+  //     this._getUsers();
+  //     this.messageService.add({severity:'success', summary:' success', detail:'User deleted'});
+  //   });
+
+
+
 
 }
