@@ -5,7 +5,7 @@ import { AnswerService } from '../../Service/answer.service';
 import { Question } from '../../Model/Quiz';
 import { Quiz } from '../../Model/Quiz';
 import { Answer } from '../../Model/Quiz';
-  
+
 
 
 @Component({
@@ -61,6 +61,8 @@ export class QuestionComponent implements OnInit {
       (createdQuestion: Question) => {
         // Handle success
         console.log('Question created:', createdQuestion);
+        this.getQuestions(); // Refresh the question list
+
       },
       (error: any) => {
         console.error(error);
@@ -72,9 +74,8 @@ export class QuestionComponent implements OnInit {
     this.questionService.createQuestion(question).subscribe(
       (createdQuestion: Question) => {
         // Handle success
-        console.log('Question created:', createdQuestion);
+        console.log('Question created add:', createdQuestion);
         this.showAddDialog = false; // Close the dialog
-        this.getQuestions(); // Refresh the question list
       },
       (error: any) => {
         console.error(error);

@@ -1,8 +1,8 @@
-<h1 class="display-4 text-center">Questions</h1>
+<h1 class="display-4 text-center">Lessons</h1>
 
-<!-- Display questions -->
+<!-- Display lessons -->
 <div class="p-col-12">
-  <p-card header="Question" subheader="List of all Questions">
+  <p-card header="Lesson" subheader="List of all Lessons">
 
 
     <div class="p-grid">
@@ -11,26 +11,32 @@
           <div class="p-toolbar-group-left">
             <!-- ADD BUTTON -->
             <p-button label="New" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
-            <!-- ADD QUESTION DIALOG -->
-            <p-dialog header="Add Question" [(visible)]="showAddDialog" [responsive]="true">
-              <form #addQuestionForm="ngForm" (ngSubmit)="createQuestion(newQuestion)">
+            <!-- ADD Lesson DIALOG -->
+            <p-dialog header="Add Lesson" [(visible)]="showAddDialog" [responsive]="true">
+              <form #addLessonForm="ngForm" (ngSubmit)="createLesson(newLesson)">
                 <div class="p-fluid">
+                  <div class="p-field">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" pInputText placeholder="Enter name" name="name"
+                      [(ngModel)]="newLesson.name" required />
+                  </div>
                   <div class="p-field">
                     <label for="description">Description</label>
                     <input id="description" type="text" pInputText placeholder="Enter description" name="description"
-                      [(ngModel)]="newQuestion.description" required />
+                      [(ngModel)]="newLesson.description" required />
                   </div>
                   <div class="p-field">
-                    <label for="quiz">Quiz</label>
-                    <p-dropdown [options]="quizzes" [(ngModel)]="newQuestion.quiz" optionLabel="name"
-                      placeholder="Select a quiz" name="quiz" [required]="true"></p-dropdown>
+                    <label for="videoUrl">Video Url</label>
+                    <input id="videoUrl" type="text" pInputText placeholder="Enter videoUrl" name="videoUrl"
+                      [(ngModel)]="newLesson.videoUrl" required />
                   </div>
-                  <!--
+                <!--
                   <div class="p-field">
-                    <label for="quiz">Answers</label>
-                    <p-dropdown [options]="answers" [(ngModel)]="newQuestion.answers" optionLabel="description" placeholder="Select answers" name="answer" [required]="true" multiple="true"></p-dropdown>
+                    <label for="course">course</label>
+                    <p-dropdown [options]="course" [(ngModel)]="newLesson.course" optionLabel="name"
+                      placeholder="Select a course" name="course" [required]="true"></p-dropdown>
                   </div>
-                  -->
+                -->
                 </div>
                 <p-footer>
                   <button type="submit" pButton label="Save"></button>
@@ -50,35 +56,31 @@
     <div class="p-grid">
       <div class="p-col-12">
        
-        <p-table [paginator]="true" [rows]="5" [value]="questions" styleClass="p-datatable-gridlines"
+        <p-table [paginator]="true" [rows]="5" [value]="lessons" styleClass="p-datatable-gridlines"
           [globalFilterFields]="['description']" > <!--[(globalFilterValue)]="globalFilterValue"-->
           <ng-template pTemplate="header">
             <tr>
               <!-- Use correct field names for sorting -->
+              <th pSortableColumn="name">
+                Name <p-sortIcon field="name"></p-sortIcon>
+              </th>
               <th pSortableColumn="description">
                 Description <p-sortIcon field="description"></p-sortIcon>
               </th>
-              <th pSortableColumn="quiz.name">
-                Quiz <p-sortIcon field="quiz.name"></p-sortIcon>
-              </th>
-              <th pSortableColumn="answers.length">
-                Answers <p-sortIcon field="answers.length"></p-sortIcon>
+              <th pSortableColumn="videoUrl">
+                videoUrl <p-sortIcon field="videoUrl"></p-sortIcon>
               </th>
               <th>Actions</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-question>
+          <ng-template pTemplate="body" let-lesson>
             <tr>
-              <td>{{ question.description }}</td>
-              <td>{{ question.quiz.name }}</td>
-              <td>
-                <ul>
-                  <li *ngFor="let answer of question.answers">{{ answer.description }}</li>
-                </ul>
-              </td>
+              <td>{{ lesson.name }}</td>
+              <td>{{ lesson.description }}</td>
+              <td>{{ lesson.videoUrl }}</td>
               <td>
                 <!--DELETE  BUTTON-->
-                <p-button (click)="delete(question)" styleClass="p-button-danger p-mr-5" icon="pi pi-trash"></p-button>
+                <p-button (click)="delete(lesson)" styleClass="p-button-danger p-mr-5" icon="pi pi-trash"></p-button>
                 <!--UPDATE BUTTON-->
                 <p-button styleClass="p-button-info" icon="pi pi-pencil"></p-button>
               </td>

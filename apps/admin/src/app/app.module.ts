@@ -9,7 +9,7 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,10 +42,14 @@ import { QuizComponent } from './pages/quiz/quiz.component';
 import { QuizService } from './Service/quiz.service';
 import { QuestionService } from './Service/question.service';
 import { QuestionComponent } from './pages/question/question.component';
+import { CourseService } from './Service/course.service';
 import { AnswerComponent } from './pages/answer/answer.component';
 import { AnswerService } from './Service/answer.service';
 import { DialogModule } from 'primeng/dialog';
-
+import { CourseComponent } from './pages/course/course.component';
+import { LessonComponent } from './pages/lesson/lesson.component';
+import { LessonService } from './Service/lesson.service';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 const routes: Routes = [
@@ -140,6 +144,14 @@ const routes: Routes = [
         path: 'answer',
         component: AnswerComponent,
       },
+      {
+        path: 'course',
+        component: CourseComponent,
+      },
+      {
+        path: 'lesson',
+        component: LessonComponent,
+      },
     ],
   },
 ];
@@ -166,6 +178,8 @@ const routes: Routes = [
     QuizComponent,
     QuestionComponent,
     AnswerComponent,
+    CourseComponent,
+    LessonComponent,
   ],
   imports: [
     TagModule,
@@ -183,6 +197,7 @@ const routes: Routes = [
     ButtonModule,
     TableModule,
     HttpClientModule,
+    FileUploadModule,
     InputTextModule,
     FormsModule,
     ReactiveFormsModule,
@@ -191,7 +206,16 @@ const routes: Routes = [
     UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService, MessageService, QuizService, QuestionService, AnswerService],
+  providers: [
+    CategoriesService,
+    MessageService,
+    QuizService,
+    QuestionService,
+    AnswerService,
+    CourseService,
+    LessonService,
+    ConfirmationService,
+  ],
   bootstrap: [AppComponent],
   exports: [
     CollaboratersListComponent,
@@ -200,6 +224,7 @@ const routes: Routes = [
     OrderDetailsComponent,
     CodePromoListComponent,
     CodeformComponent,
+    TableModule,
   ],
 })
 export class AppModule {}

@@ -1,0 +1,100 @@
+<h1 class="display-4 text-center">Courses</h1>
+
+<!--Course Courses course courses-->
+
+<!-- Display Courses -->
+<div class="p-col-12">
+  <p-card header="Course" subheader="List of all Courses">
+
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <!-- ADD BUTTON -->
+            <p-button label="New" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
+            <!-- ADD Course DIALOG ******************** <p-dialog header="Add Course" [(visible)]="showAddDialog" [responsive]="true"> -->
+              <p-dialog header="{{ selectedCourse ? 'Update Course' : 'Add Course' }}" [(visible)]="showAddDialog">
+              <form #addCourseForm="ngForm" (ngSubmit)="createCourse(newCourse)">
+                <div class="p-fluid">
+                  <div class="p-field">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" pInputText placeholder="Enter name" name="name"
+                      [(ngModel)]="newCourse.name" required />
+                  </div>
+                  <div class="p-field">
+                    <label for="description">Description</label>
+                    <input id="description" type="text" pInputText placeholder="Enter description" name="description"
+                      [(ngModel)]="newCourse.description" required />
+                  </div>
+                  <div class="p-field">
+                    <label for="lessons">Lesson</label>
+                    <p-dropdown [options]="lessons" [(ngModel)]="newCourse.lessons" optionLabel="name"
+                      placeholder="Select a lesson" name="lesson" [required]="true"></p-dropdown>
+                  </div>
+                  <div class="p-field">
+                    <label for="pdfFile">PDF File</label>
+                    <p-fileUpload name="pdfFile" accept="application/pdf" chooseLabel="Select PDF file" (onSelect)="onFileSelected($event)"></p-fileUpload>
+                  </div>
+                  
+                </div>
+                <p-footer>
+                  <button type="submit" pButton label="Save"></button>
+                  <button type="button" pButton label="Cancel" (click)="showAddDialog = false"></button>
+                  <p-button label="Save" (click)="selectedCourse ? updateCourse(selectedCourse) : addCourse(newCourse)"></p-button>
+                </p-footer>
+              </form>
+            </p-dialog>
+            <!-- search-->
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText placeholder="Search..." [(ngModel)]="globalFilterValue" class="p-inputtext-sm p-mr-2">
+            </span>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">       
+        <p-table [paginator]="true" [rows]="5" [value]="courses" styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['name']" > <!--[(globalFilterValue)]="globalFilterValue"-->
+          <ng-template pTemplate="header">
+            <tr>
+              <!-- Use correct field names for sorting -->
+              <th pSortableColumn="name">
+                Name <p-sortIcon field="name"></p-sortIcon>
+              </th>
+              <th pSortableColumn="description">
+                Description  <p-sortIcon field="description"></p-sortIcon>
+              </th>
+              <th pSortableColumn="lessonslength">
+                Lessons <p-sortIcon field="lessons.length"></p-sortIcon>
+              </th>
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-course>
+            <tr>
+              <td>{{ course.name }}</td>
+              <td>{{ course.description }}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let lesson of course.lessons">{{ lesson.name }}</li>
+                </ul>
+              </td>
+              <td>
+                <!--DELETE  BUTTON-->
+                <p-button (click)="delete(course)" styleClass="p-button-danger p-mr-5" icon="pi pi-trash"></p-button>
+                <!--UPDATE BUTTON-->
+                <p-button styleClass="p-button-info" icon="pi pi-pencil"(click)="updateCourse(course)"></p-button>
+                <!--upload pdf BUTTON-->
+                <button pButton icon="pi pi-upload" class="p-button-rounded p-button-info" (click)="fileInput.click()"></button>
+                <input #fileInput type="file" (change)="onFileSelected($any($event.target).files); affectpdftocourse(course, file)" style="display:none" accept=".pdf" />
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+</div>
