@@ -6,18 +6,26 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class  UserService {
 
   private apiUrl = 'http://localhost:8081/api';
 
   constructor(private http: HttpClient) {}
 
-  getData() {
-    return this.http.get(this.apiUrl);
+  getuser(id : number ) {
+    return this.http.get(this.apiUrl+"/user/"+id);
   }
 
   addUser(user:User){
-    return this.http.get(this.apiUrl);
+    return this.http.post<User>(this.apiUrl , user);
+
+  }
+  updateUser(user:User){
+    return this.http.put<User>(this.apiUrl+"/updateUser" , user);
+
+  }
+  deleteUser(id:number) {
+    return this.http.delete(this.apiUrl + "/user/" + id);
 
   }
   getAllUsers(){

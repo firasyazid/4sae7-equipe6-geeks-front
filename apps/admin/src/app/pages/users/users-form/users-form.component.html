@@ -27,40 +27,41 @@
         <form [formGroup]="form">
           <div class="p-fluid p-formgrid p-grid">
             <div class="p-field p-col-4">
-              <label for="name">Name</label>
-              <input formControlName="name" id="name" type="text" pInputText />
-              <small *ngIf="userForm['name'].invalid && isSubmitted" class="p-error"
-                >Name is required</small
-              >
+              <label for="firstName">firstName</label>
+              <input formControlName="firstName" id="firstName" type="text" pInputText />
+              <small *ngIf="userForm['firstName'].invalid " class="p-error"
+                >firstName is required</small>
+            </div>
+            <div class="p-field p-col-4">
+              <label for="lastName">lastName</label>
+              <input formControlName="lastName" id="lastName" type="text" pInputText />
+              <small *ngIf="userForm['lastName'].invalid " class="p-error"
+                >lastName is required</small>
             </div>
             <div class="p-field p-col-4">
               <label for="email">Email</label>
               <input formControlName="email" id="email" type="text" pInputText />
-              <small *ngIf="userForm['email'].invalid && isSubmitted" class="p-error"
+              <small *ngIf="userForm['email'].invalid " class="p-error"
                 ><span *ngIf="userForm['email']errors['required']">email is required</span>
-                <span *ngIf="userForm['email']errors['email']">email is invalid</span></small
-              >
+                <span *ngIf="userForm['email']errors['email']">email is invalid</span></small>
             </div>
             <div class="p-field p-col-4">
               <label for="password">Password</label>
               <input formControlName="password" id="password" type="password" pInputText />
-              <small *ngIf="userForm['password'].invalid && isSubmitted" class="p-error"
+              <small *ngIf="userForm['password'].invalid " class="p-error"
                 >Password is required</small
               >
             </div>
             <div class="p-field p-col-4">
-              <label for="color">Phone</label><br />
-              <input formControlName="phone" id="phone" type="text" pInputText />
-               <small *ngIf="userForm['phone'].invalid && isSubmitted" class="p-error"
+              <label for="tel">tel</label><br />
+              <input formControlName="tel" id="tel" type="text" pInputText />
+               <small *ngIf="userForm['tel'].invalid" class="p-error"
                 >phone is required</small
               >
             </div>
-            <div class="p-field p-col-4">
-              <label for="isAdmin">Is Admin</label><br />
-              <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
-            </div>
+
           </div>
-              
+
          </form>
       </div>
     </div>

@@ -70,6 +70,7 @@
               <th pSortableColumn="password" style="width:20%">password <p-sortIcon field="password"></p-sortIcon></th>
               <th pSortableColumn="tel" style="width:20%">phone <p-sortIcon field="tel"></p-sortIcon></th>
               <th pSortableColumn="email" style="width:20%">email <p-sortIcon field="email"></p-sortIcon></th>
+              <th></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-user>
@@ -79,6 +80,17 @@
               <td>{{user.password}}</td>
               <td>{{user.tel}}</td>
               <td>{{user.email }}</td>
+              <td>
+                <p-button
+                  (click)="updateUser(user.id)"
+                  styleClass="p-button-outlined p-button-warning"
+                  icon="pi-window-maximize"
+                ></p-button><p-button
+                  (click)="deleteUser(user.id)"
+                  styleClass="p-button-raised p-button-danger"
+                  icon="pi pi-times"
+                ></p-button>
+              </td>
             </tr>
           </ng-template>
         </p-table>

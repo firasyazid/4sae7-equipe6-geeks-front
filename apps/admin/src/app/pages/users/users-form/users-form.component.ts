@@ -2,9 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UsersService, User } from '@eshop/products';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
+import {User} from "../../../Entities/User";
+import {UserService} from "../../../Services/userService/user.service";
 
 @Component({
   selector: 'admin-users-form',
@@ -15,7 +16,7 @@ export class UsersFormComponent implements OnInit {
   form!: FormGroup;
   isSubmitted = false;
   editmode = false;
-  currentUserId!: string;
+  currentUserId!: number;
   countries = [];
   users: User[] = [];
 
@@ -23,7 +24,7 @@ export class UsersFormComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private formBuilder: FormBuilder,
-    private usersService: UsersService,
+    private usersService: UserService,
     private location: Location,
     private route: ActivatedRoute
   ) {}
@@ -40,33 +41,33 @@ export class UsersFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       isAdmin: [],
-      
+
     });
   }
 
-  private _addUser(user: User) {
-    this.usersService.createUser(user).subscribe(
-      (user: User) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: `User ${user.name} is created!`
-        });
-        timer(2000)
-          .toPromise()
-          .then(() => {
-            this.location.back();
-          });
-      },
-      () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'User is not created!'
-        });
-      }
-    );
-  }
+  // private _addUser(user: User) {
+  //   this.usersService.createUser(user).subscribe(
+  //     (user: User) => {
+  //       this.messageService.add({
+  //         severity: 'success',
+  //         summary: 'Success',
+  //         detail: `User ${user.name} is created!`
+  //       });
+  //       timer(2000)
+  //         .toPromise()
+  //         .then(() => {
+  //           this.location.back();
+  //         });
+  //     },
+  //     () => {
+  //       this.messageService.add({
+  //         severity: 'error',
+  //         summary: 'Error',
+  //         detail: 'User is not created!'
+  //       });
+  //     }
+  //   );
+  // }
 
   private _updateUser(user: User) {
     this.usersService.updateUser(user).subscribe(
@@ -97,13 +98,20 @@ export class UsersFormComponent implements OnInit {
       if (params['id']) {
         this.editmode = true;
         this.currentUserId = params['id'];
-        this.usersService.getUser(params['id']).subscribe((user) => {
-          this.userForm['name'].setValue(user.name);
+        this.usersService.getuser(params['id']).subscribe((user) => {
+          // @ts-ignore
+          this.userForm['firstName'].setValue(user.firstName);
+          // @ts-ignore
+          this.userForm['lastName'].setValue(user.lastName);
+          // @ts-ignore
           this.userForm['email'].setValue(user.email);
-          this.userForm['phone'].setValue(user.phone);
-          this.userForm['isAdmin'].setValue(user.isAdmin);
-          this.userForm['password'].setValidators([]);
-          this.userForm['password'].updateValueAndValidity();
+          // @ts-ignore
+          this.userForm['password'].setValue(user.password);
+          // @ts-ignore
+          this.userForm['tel'].setValue(user.tel);
+          // @ts-ignore
+          this.userForm['enabled'].setValue(user.enabled);
+
         });
       }
     });
@@ -116,10 +124,10 @@ export class UsersFormComponent implements OnInit {
     }
     const user: User = {
       id: this.currentUserId,
-      name: this.userForm['name'].value,
+      lastName: this.userForm['lastName'].value,
+      firstName: this.userForm['firstName'].value,
+      tel: this.userForm['tel'].value,
       email: this.userForm['email'].value,
-      phone: this.userForm['phone'].value,
-      isAdmin: this.userForm['isAdmin'].value,
        password: this.userForm['password'].value
 
 
@@ -127,7 +135,7 @@ export class UsersFormComponent implements OnInit {
     if (this.editmode) {
       this._updateUser(user);
     } else {
-      this._addUser(user);
+   //   this._addUser(user);
     }
   }
 
@@ -135,7 +143,7 @@ export class UsersFormComponent implements OnInit {
     this.location.back();
   }
 
- 
+
   get userForm() {
     return this.form.controls;
   }
