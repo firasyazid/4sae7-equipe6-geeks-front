@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { EditorModule } from 'primeng/editor';
@@ -30,7 +31,7 @@ import { CategoriesService } from '@eshop/products';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
-import { AuthGuardService, UsersModule } from '@eshop/users';
+import { UsersModule } from '@eshop/users';
 import { CollaboratersListComponent } from './pages/collaboraters/collaboraters-list/collaboraters-list.component';
 import { CollaboratersFormComponent } from './pages/collaboraters/collaboraters-form/collaboraters-form.component';
 import { OrderListComponent } from './pages/orders/order-list/order-list.component';
@@ -38,12 +39,25 @@ import { OrderDetailsComponent } from './pages/orders/order-details/order-detail
 import { FieldsetModule } from 'primeng/fieldset';
 import { CodePromoListComponent } from './pages/CodepromoComp/code-promo-list/code-promo-list.component';
 import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.component';
-
+import { AppelComponent } from './pages/appel/appel.component';
+import { DemandComponent } from './pages/demand/demand.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'; 
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatButtonModule } from '@angular/material/button'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input'; 
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatRadioModule } from '@angular/material/radio'; 
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+import { MatSliderModule } from '@angular/material/slider'; 
+import {MatTableModule} from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-     children: [
+    children: [
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -118,8 +132,15 @@ const routes: Routes = [
       {
         path: 'codepromo/form/:id',
         component: CodeformComponent,
-      }
-
+      },
+      {
+        path: 'appel',
+        component: AppelComponent,
+      },
+      {
+        path: 'demand',
+        component: DemandComponent,
+      },
     ],
   },
 ];
@@ -143,6 +164,9 @@ const routes: Routes = [
     OrderDetailsComponent,
     CodePromoListComponent,
     CodeformComponent,
+    AppelComponent,
+    DemandComponent,
+    
   ],
   imports: [
     TagModule,
@@ -155,6 +179,7 @@ const routes: Routes = [
     CardModule,
     DropdownModule,
     ToastModule,
+    DialogModule,
     ToolbarModule,
     ButtonModule,
     TableModule,
@@ -165,6 +190,19 @@ const routes: Routes = [
     FieldsetModule,
     InputSwitchModule,
     UsersModule,
+    TableModule,
+    MatAutocompleteModule, 
+    MatCheckboxModule, 
+    MatButtonModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatDatepickerModule, 
+    MatRadioModule, 
+    MatSelectModule, 
+    MatSlideToggleModule, 
+    MatSliderModule ,
+    MatTableModule,
+    CommonModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [CategoriesService, MessageService],
@@ -176,6 +214,7 @@ const routes: Routes = [
     OrderDetailsComponent,
     CodePromoListComponent,
     CodeformComponent,
+    TableModule,
   ],
 })
 export class AppModule {}

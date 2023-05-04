@@ -1,0 +1,112 @@
+<h1 class="display-4 text-center">Appels</h1>
+
+<!-- Display appels -->
+<div class="p-col-12">
+  <p-card header="Appel" subheader="List of all Appels">
+
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <!-- ADD BUTTON -->
+            <p-button label="New" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
+            <!-- ADD Appel DIALOG -->
+            <p-dialog header="Add Appel" [(visible)]="showAddDialog" [responsive]="true">
+              <form #addAppelForm="ngForm" (ngSubmit)="addAppel(newAppel)">
+                <div class="p-fluid">
+                  <div class="p-field">
+                    <label for="description">Description</label>
+                    <input id="description" type="text" pInputText placeholder="Enter description" name="description"
+                      [(ngModel)]="newAppel.description" required />
+                  </div>
+                  
+                 
+                
+                    <div class="p-field">
+                     <label for="quantity"> Quantity</label>
+                     <input id="quantity" type="text" pInputText placeholder="Enter quantity" name="quantity"
+                        [(ngModel)]="newAppel.quantity" required />
+                  </div>
+
+                  <div class="p-field">
+                    <label for="datedebut"> DateDebut</label>
+                    <input id="datedebut" type="date" pInputDate placeholder="Enter date" name="datedebut"
+                       [(ngModel)]="newAppel.datedebut" required />
+                 </div>
+
+                 <div class="p-field">
+                  <label for="datefin"> DateFin</label>
+                  <input id="datefin" type="date" pInputDate placeholder="Enter date" name="datefin"
+                     [(ngModel)]="newAppel.datefin" required />
+               </div>
+                  <!--
+                  <div class="p-field">
+                    <label for="quiz">Answers</label>
+                    <p-dropdown [options]="answers" [(ngModel)]="newQuestion.answers" optionLabel="description" placeholder="Select answers" name="answer" [required]="true" multiple="true"></p-dropdown>
+                  </div>
+                  -->
+                </div>
+                <p-footer>
+                  <button type="submit" pButton label="Save"></button>
+                  <button type="button" pButton label="Cancel" (click)="showAddDialog = false"></button>
+                </p-footer>
+              </form>
+            </p-dialog>
+            <!-- search-->
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText placeholder="Search..." [(ngModel)]="globalFilterValue" class="p-inputtext-sm p-mr-2">
+            </span>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table [paginator]="true" [rows]="5" [value]="appels" styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['description']" >
+          <ng-template pTemplate="header">
+            <tr>
+              <!-- Use correct field names for sorting -->
+              <th pSortableColumn="appel.description">
+                Description <p-sortIcon field="appel.description"></p-sortIcon>
+              </th>
+              <th pSortableColumn="appel.quantity">
+                Quantity <p-sortIcon field="appel.quantity"></p-sortIcon>
+              </th>
+              <th pSortableColumn="appel.datedebut">
+                Date Debut <p-sortIcon field="appel.datedebut"></p-sortIcon>
+              </th>
+              <th pSortableColumn="appel.datefin">
+                Date Fin <p-sortIcon field="appel.datefin"></p-sortIcon>
+              </th>
+             
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-appel>
+            <tr>
+              <td>{{ appel.description }}</td>
+              <td>{{ appel.quantity }}</td>
+              <td>{{ appel.datedebut | date }}</td>
+              <td>{{ appel.datefin }}</td>
+             <!--
+              <td>
+                <ul>
+                  <li *ngFor="let demand of appel.demand">{{ demand.description }}</li>
+                </ul>
+              </td>--> 
+              <td>
+                <!--DELETE  BUTTON-->
+                <p-button (click)="deleteAppel(appel)" styleClass="p-button-danger p-mr-5" icon="pi pi-trash"></p-button>
+                <!--UPDATE BUTTON-->
+                <p-button styleClass="p-button-info" icon="pi pi-pencil"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+</div>

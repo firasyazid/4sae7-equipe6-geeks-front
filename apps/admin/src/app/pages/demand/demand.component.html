@@ -1,0 +1,105 @@
+<h1 class="display-4 text-center">demands</h1>
+
+<!-- Display appels -->
+<div class="p-col-12">
+  <p-card header="demand" subheader="List of all demands">
+
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <!-- ADD BUTTON -->
+            <p-button label="New" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
+            <!-- ADD Appel DIALOG -->
+            <p-dialog header="Add Demand" [(visible)]="showAddDialog" [responsive]="true">
+              <form #addDemandForm="ngForm" (ngSubmit)="addDemand(newDemand)">
+                <div class="p-fluid">
+                  <div class="p-field">
+                    <label for="prixunite">prix unite</label>
+                    <input id="prixunite" type="text" pInputText placeholder="Enter prixunite" name="prixunite"
+                      [(ngModel)]="newDemand.prixunite" required />
+                  </div>
+                  
+                 
+                
+                    <div class="p-field">
+                     <label for="idappel"> appel id</label>
+                     <input id="idappel" type="text" pInputText placeholder="Enter id appel" name="id appel"
+                        [(ngModel)]="newDemand.appelDemand" required />
+                  </div>
+
+                  <div class="p-field">
+                    <label for="datedemand"> DateDebut</label>
+                    <input id="datedemand" type="date" pInputDate placeholder="Enter date" name="datedemand"
+                       [(ngModel)]="newDemand.datedemand" required />
+                 </div>
+
+                
+                  <!--
+                  <div class="p-field">
+                    <label for="quiz">Answers</label>
+                    <p-dropdown [options]="answers" [(ngModel)]="newQuestion.answers" optionLabel="description" placeholder="Select answers" name="answer" [required]="true" multiple="true"></p-dropdown>
+                  </div>
+                  -->
+                </div>
+                <p-footer>
+                  <button type="submit" pButton label="Save"></button>
+                  <button type="button" pButton label="Cancel" (click)="showAddDialog = false"></button>
+                </p-footer>
+              </form>
+            </p-dialog>
+            <!-- search-->
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText placeholder="Search..." [(ngModel)]="globalFilterValue" class="p-inputtext-sm p-mr-2">
+            </span>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table [paginator]="true" [rows]="5" [value]="demands" styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['prixunite']" >
+          <ng-template pTemplate="header">
+            <tr>
+              <!-- Use correct field names for sorting -->
+              <th pSortableColumn="demand.prixunite">
+                prixunite <p-sortIcon field="demand.prixunite"></p-sortIcon>
+              </th>
+              <th pSortableColumn="demand.idappel">
+                idappel <p-sortIcon field="appel.quantity"></p-sortIcon>
+              </th>
+              <th pSortableColumn="demand.datedemand">
+                Date demand <p-sortIcon field="appel.datedebut"></p-sortIcon>
+              </th>
+            
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-demand>
+            <tr>
+              <td>{{ demand.prixunite }}</td>
+              <td>{{ demand.idappel }}</td>
+              <td>{{ demand.datedemand }}</td>
+             
+             <!--
+              <td>
+                <ul>
+                  <li *ngFor="let demand of appel.demand">{{ demand.description }}</li>
+                </ul>
+              </td>--> 
+              <td>
+                <!--DELETE  BUTTON-->
+                <p-button (click)="deleteDemand(demand)" styleClass="p-button-danger p-mr-5" icon="pi pi-trash"></p-button>
+                <!--UPDATE BUTTON-->
+                <p-button  styleClass="p-button-info" icon="pi pi-pencil"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+</div>
