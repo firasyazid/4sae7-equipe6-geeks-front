@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChatService {
   private stompClient: Client;
-  private serverUrl = 'ws://localhost:3308/ws';
+  private serverUrl = 'ws://localhost:3308/ws/websocket';
   private channel = '/topic/public';
 
   constructor(private http: HttpClient) {

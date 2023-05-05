@@ -33,5 +33,9 @@ import { Claim } from '../../models/claim';
         .get<number>(`http://localhost:3308/Claims/countClaims`)
      }
 
+     getClaimsMonthly(): Observable<any> {
+      return this.http.get(`http://localhost:3308/Claims/claims/monthly`);
+    }
+
 
  }

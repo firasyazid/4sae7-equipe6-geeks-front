@@ -42,9 +42,10 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DialogModule } from 'primeng/dialog';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
-import { ChartjsModule } from '@coreui/angular-chartjs';
+  import { NgChartsModule } from 'ng2-charts';
+ import { ChartjsModule } from '@coreui/angular-chartjs';
 
-
+  
  const routes: Routes = [
   {
     path: '',
@@ -141,7 +142,7 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
   declarations: [
     AppComponent,
     NxWelcomeComponent,
-     DashboardComponent,
+    DashboardComponent,
     ShellComponent,
     SidebarComponent,
     CategoriesListComponent,
@@ -157,14 +158,15 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
     CodePromoListComponent,
     CodeformComponent,
     ChatComponent,
+    StatisticsComponent,
    ],
   imports: [
-    TagModule,DialogModule,ChartjsModule,
-    BrowserModule,
+    TagModule,DialogModule,
+    BrowserModule,ChartjsModule,
     EditorModule,
     ColorPickerModule,
     ConfirmDialogModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,NgChartsModule,
     InputNumberModule,
     CardModule,
     DropdownModule,
