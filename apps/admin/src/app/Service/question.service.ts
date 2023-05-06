@@ -7,7 +7,7 @@ import { Question } from '../Model/Quiz';
 export class QuestionService {
   private apiUrl = 'http://localhost:8085/Questions';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Get all questions
   getQuestions(): Observable<Question[]> {
@@ -29,5 +29,11 @@ export class QuestionService {
   deleteQuestion(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
+  }
+
+  // Add answer to question
+  addAnswerToQuestion(questionId: number, answerId: number): Observable<Question> {
+    const url = `${this.apiUrl}/addAnswerToQuestion/${questionId}/${answerId}`;
+    return this.http.post<Question>(url, null);
   }
 }

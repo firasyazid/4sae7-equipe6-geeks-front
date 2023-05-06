@@ -2,7 +2,12 @@
 
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../../Service/quiz.service';
-import { Quiz } from '../../Model/Quiz';
+import { Question, Quiz } from '../../Model/Quiz';
+import { QuestionService } from '../../Service/question.service';
+import { map } from 'rxjs/operators';
+import {Router} from "@angular/router"
+
+
 
 
 @Component({
@@ -12,12 +17,33 @@ import { Quiz } from '../../Model/Quiz';
 })
 export class QuizComponent implements OnInit {
   quizzes: Quiz[];
+  questions: Question[];
+  showAddDialog : boolean = false;
+  globalFilterValue: string;
+  selectedQuestion: Question;
+  urlpdf: string;
 
-  constructor(private quizService: QuizService) {}
+  constructor(
+    private quizService: QuizService,
+    private questionService: QuestionService,
+    private router: Router) {}
 
   ngOnInit() {
     this.loadQuizzes();
+    this.getQuestions();
   }
+
+  newQuiz: Quiz = {
+    id: null,
+    name: '',
+    questions: []
+  }
+
+  getQuestions(): void {
+    this.questionService.getQuestions()
+      .subscribe(questions => this.questions = questions);
+  }
+
 
   loadQuizzes() {
     this.quizService.getQuizzes().subscribe(
@@ -65,4 +91,27 @@ export class QuizComponent implements OnInit {
       }
     );
   }
+
+  ExportQuiz(id: number) {
+    this.quizService.exportQuizToPdf(id).subscribe(response => {
+      const file = new Blob([response], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL, '_blank');
+    });
+  }
+  
+
+  addQuestionToQuiz(quizId: number, questionId: number): void {
+    this.quizService.AddquestionToQuiz(quizId, questionId).subscribe(
+      (updatedQuiz: Quiz) => {
+        // Handle success
+        console.log('Question added to Quiz:', updatedQuiz);
+        this.loadQuizzes(); // Refresh the question list
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
 }

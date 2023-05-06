@@ -52,6 +52,11 @@ export class LessonComponent implements OnInit {
     );
   }
 
+  getCorsSafeUrl(videoUrl: string): string {
+    const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    return corsProxyUrl + videoUrl;
+  }
+
   addLesson(lesson: Lesson): void {
     this.lessonService.createLesson(lesson).subscribe(
       (createdLesson: Lesson) => {

@@ -19,6 +19,8 @@ export class QuestionComponent implements OnInit {
   answers: Answer[];
   showAddDialog: boolean = false;
   globalFilterValue: string;
+  selectedAnswer: Answer;
+
 
 
   constructor(
@@ -92,4 +94,18 @@ export class QuestionComponent implements OnInit {
   updateQuestion(question: Question): void {
     this.questionService.updateQuestion(question).subscribe();
   }
+
+  addAnswerToQuestion(questionId: number, answerId: number): void {
+    this.questionService.addAnswerToQuestion(questionId, answerId).subscribe(
+      (updatedQuestion: Question) => {
+        // Handle success
+        console.log('Answer added to question:', updatedQuestion);
+        this.getQuestions(); // Refresh the question list
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+  
 }

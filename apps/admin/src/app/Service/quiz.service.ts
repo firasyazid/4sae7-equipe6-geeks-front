@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Quiz } from '../Model/Quiz';
+import { map } from 'rxjs/operators';
+
 
 @Injectable()
 export class QuizService {
@@ -30,4 +32,25 @@ export class QuizService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url);
   }
+
+  // Export a quiz as PDF
+  exportQuizToPdf(id: number): Observable<any> {
+    const url = `${this.apiUrl}/export/${id}`;
+    console.log(url);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/pdf' }),
+      responseType: 'arraybuffer' as const,
+    };
+    return this.http.get(url, httpOptions);
+  }
+
+  //add question to quiz
+  AddquestionToQuiz(quizId: number, questionId: number): Observable<Quiz> {
+    const url = `${this.apiUrl}/addQuestionToQuiz/${quizId}/${questionId}`;
+    return this.http.post<Quiz>(url, null);
+  }
+  
+
+
+
 }
