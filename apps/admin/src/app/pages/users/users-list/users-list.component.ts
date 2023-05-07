@@ -34,7 +34,10 @@ export class UsersListComponent implements OnInit {
     this.router.navigateByUrl(`users/form/${userid}`);
   }
   deleteUser(userid: number) {
-    this.usersService.deleteUser(userid);
+    console.log("gggggg" , userid)
+    this.usersService.deleteUser(userid).subscribe(res => {
+      console.log(res)
+    });
   }
 
   // deleteUser(userId: string) {
