@@ -3,7 +3,7 @@ import { Demand } from "./demand";
 import { Material } from "./material";
 
 export class Appel {
-    idc: number;
+    id: number;
     quantity: number;
     description: string;
     datedebut: Date;

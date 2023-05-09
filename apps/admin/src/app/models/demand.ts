@@ -7,4 +7,5 @@ export class Demand {
     datedemand: Date;
     appelDemand: Appel;
     user: AppUser;
+    description:any;
   }

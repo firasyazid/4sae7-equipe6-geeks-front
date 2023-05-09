@@ -25,7 +25,7 @@ export class AppelService {
   }
 
   updateAppel(appel: Appel): Observable<any> {
-    const url = `${this.apiUrl}/${appel.idc}`;
+    const url = `${this.apiUrl}/${appel.id}`;
     return this.http.put(url, appel);
   }
 
@@ -33,4 +33,10 @@ export class AppelService {
     const url = `${this.apiUrl+'/delete-appel'}/${id}`;
     return this.http.delete(url);
   }
+
+  calculateTotalPrices(appel: Appel): Observable<Set<Map<string, number>>> {
+    const url = `${this.apiUrl+'/calculateTotalPrices'}`;
+    return this.http.post<Set<Map<string, number>>>(url, appel);
+  }
+  
 }

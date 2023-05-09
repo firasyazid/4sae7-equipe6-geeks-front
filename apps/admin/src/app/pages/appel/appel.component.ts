@@ -40,7 +40,7 @@ export class AppelComponent implements OnInit {
    
 // eslint-disable-next-line @typescript-eslint/member-ordering
 newAppel: Appel = {
-  idc: null,
+  id: null,
   datedebut:new Date,
   datefin:new Date,
   description: '',
@@ -71,7 +71,7 @@ newAppel: Appel = {
   updateAppel(appel: Appel): void {
     this.appelService.updateAppel(appel)
       .subscribe(() => {
-        const index = this.appels.findIndex(a => a.idc === appel.idc);
+        const index = this.appels.findIndex(a => a.id === appel.id);
         this.appels[index] = appel;
       });
   }
@@ -79,6 +79,6 @@ newAppel: Appel = {
   // Supprimer un appel existant
   deleteAppel(appel: Appel): void {
     this.appels = this.appels.filter(a => a !== appel);
-    this.appelService.deleteAppel(appel.idc).subscribe();
+    this.appelService.deleteAppel(appel.id).subscribe();
   }
 }

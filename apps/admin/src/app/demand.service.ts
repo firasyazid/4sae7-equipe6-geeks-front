@@ -35,9 +35,17 @@ export class DemandService {
     const url = `${this.apiUrl+'/delete-demand'}/${id}`;
     return this.http.delete<void>(url);
   }
-  ajouterEtaffecterDemand(demand: Demand, id: number, idu: number): Observable<Demand> {
-    const url = `${this.apiUrl+'/ajouterEtaffecterDemand/'}/${id}/${idu}`;
+  ajouterEtaffecterDemand(demand: Demand,id: number): Observable<Demand> {
+    const url = `${this.apiUrl+'/add-listeDemand'}/${id}`;
     return this.http.post<Demand>(url, demand);
+  }
+  getDescription(): Observable<any> {
+    return this.http.get<any>(this.apiUrl+'/descriptions');
+  }
+
+  getId( desc:any): Observable<number> {
+    const url = `${this.apiUrl+'/descriptionid'}/${desc}`;
+    return this.http.get<number>(url);
   }
 
 }

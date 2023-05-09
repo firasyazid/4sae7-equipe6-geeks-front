@@ -10,9 +10,11 @@
         <p-toolbar>
           <div class="p-toolbar-group-left">
             <!-- ADD BUTTON -->
-            <p-button label="New" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
+           
+           
+          <!--   <p-button label="New" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
             <!-- ADD Appel DIALOG -->
-            <p-dialog header="Add Demand" [(visible)]="showAddDialog" [responsive]="true">
+            <!-- <p-dialog header="Add Demand" [(visible)]="showAddDialog" [responsive]="true">
               <form #addDemandForm="ngForm" (ngSubmit)="addDemand(newDemand)">
                 <div class="p-fluid">
                   <div class="p-field">
@@ -25,8 +27,56 @@
                 
                     <div class="p-field">
                      <label for="idappel"> appel id</label>
-                     <input id="idappel" type="text" pInputText placeholder="Enter id appel" name="id appel"
-                        [(ngModel)]="newDemand.appelDemand" required />
+                     <select id="idappel" type="combo" pInputText placeholder="Enter id appel" name="id appel"
+                        [(ngModel)]="newDemand.appelDemand" required >
+                      <option *ngFor="let des of desc" [value]= "des">{{ des }}</option>
+                        </select>
+                  </div>
+
+                  <div class="p-field">
+                    <label for="datedemand"> DateDebut</label>
+                    <input id="datedemand" type="date" pInputDate placeholder="Enter date" name="datedemand"
+                       [(ngModel)]="newDemand.datedemand" required />
+                 </div>
+
+                
+                  <!--
+                  <div class="p-field">
+                    <label for="quiz">Answers</label>
+                    <p-dropdown [options]="answers" [(ngModel)]="newQuestion.answers" optionLabel="description" placeholder="Select answers" name="answer" [required]="true" multiple="true"></p-dropdown>
+                  </div>
+                  -->
+              <!--   </div>
+                <p-footer>
+                  <button type="submit" pButton label="Save"></button>
+                  <button type="button" pButton label="Cancel" (click)="showAddDialog = false"></button>
+                </p-footer>
+              </form>
+            </p-dialog>
+          -->
+
+
+
+            <!-- ASSIGN Appel DIALOG -->
+            <p-button label="AddAssign" icon="pi pi-plus" (click)="showAddDialog = true"></p-button>
+            <!-- ADD Appel DIALOG -->
+            <p-dialog header="Add Demand" [(visible)]="showAddDialog" [responsive]="true">
+              <form #addDemandForm="ngForm" (ngSubmit)="addassign(newDemand)">
+                <div class="p-fluid">
+                  <div class="p-field">
+                    <label for="prixunite">prix unite</label>
+                    <input id="prixunite" type="text" pInputText placeholder="Enter prixunite" name="prixunite"
+                      [(ngModel)]="newDemand.prixunite" required />
+                  </div>
+                  
+                 
+                
+                    <div class="p-field">
+                     <label for="idappel"> appel id</label>
+                     <select id="idappel" type="combo" pInputText placeholder="Enter id appel" name="id appel"
+                        [(ngModel)]="newDemand.description" required >
+                      <option *ngFor="let des of desc" [value]= "des">{{ des }}</option>
+                        </select>
                   </div>
 
                   <div class="p-field">
@@ -49,6 +99,8 @@
                 </p-footer>
               </form>
             </p-dialog>
+
+
             <!-- search-->
             <span class="p-input-icon-left">
               <i class="pi pi-search"></i>
@@ -68,11 +120,11 @@
               <th pSortableColumn="demand.prixunite">
                 prixunite <p-sortIcon field="demand.prixunite"></p-sortIcon>
               </th>
-              <th pSortableColumn="demand.idappel">
-                idappel <p-sortIcon field="appel.quantity"></p-sortIcon>
+              <th pSortableColumn="demand.appelDemand.description">
+                apeel description <p-sortIcon field="demand.appelDemand.description"></p-sortIcon>
               </th>
               <th pSortableColumn="demand.datedemand">
-                Date demand <p-sortIcon field="appel.datedebut"></p-sortIcon>
+                Date demand <p-sortIcon field="demand.datedemand"></p-sortIcon>
               </th>
             
               <th>Actions</th>
@@ -81,8 +133,8 @@
           <ng-template pTemplate="body" let-demand>
             <tr>
               <td>{{ demand.prixunite }}</td>
-              <td>{{ demand.idappel }}</td>
-              <td>{{ demand.datedemand }}</td>
+              <td>{{ demand.appelDemand.description}}</td>
+              <td>{{ demand.datedemand | date }}</td>
              
              <!--
               <td>

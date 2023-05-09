@@ -7,6 +7,7 @@ import { AppelService } from '../../appel.service';
 @Component({
   selector: 'admin-demand',
   templateUrl: './demand.component.html',
+  styleUrls: ['./demand.component.css']
  
 })
 export class DemandComponent implements OnInit {
@@ -16,17 +17,32 @@ export class DemandComponent implements OnInit {
   operation: string;
   showAddDialog = false;
   globalFilterValue: string;
+  desc:any;
+  newDemand:any ;
+  id : number ;
   
 
   constructor(
     private demandService: DemandService,
     private appelService: AppelService,
 
-    ) { }
+    ) { 
+      this.newDemand ={
+        id: this.id,
+        datedemand:new Date,
+        prixunite: null,
+        appelDemand: null,
+          user: null,
+          description:null 
+      };
+       this.id=this.newDemand.id;
+    }
 
   ngOnInit(): void {
     this.getDemands();
     this.getAppels();
+    this.getDescriptions();
+   
       
     this.operation = 'Add';
   }
@@ -41,15 +57,13 @@ export class DemandComponent implements OnInit {
     this.appelService.getAppels()
     .subscribe(appels => this.appels = appels);
 }
+getDescriptions():void{
+  this.demandService.getDescription()
+  .subscribe(descriptions => this.desc = descriptions);
+}
 
 // eslint-disable-next-line @typescript-eslint/member-ordering
-newDemand: Demand = {
-  id: null,
-  datedemand:new Date,
-  prixunite: null,
-  appelDemand: null,
-    user: null
-};
+
 
   // Ajouter une nouvelle demande
   addDemand(demand: Demand): void {
@@ -58,13 +72,33 @@ newDemand: Demand = {
         // Handle success
         console.log('demand created:', createdDemand);
         this.showAddDialog = false; // Close the dialog
-        this.getDemands(); // Refresh the question list
+        this.getDemands();
+        this.newDemand=demand; // Refresh the question list
       },
       (error: any) => {
         console.error(error);
       }
     );
   }
+
+  addassign(demand: Demand): void {
+    this.demandService.getId(demand.description).subscribe((response: number) => {
+      this.id = response;
+      console.log(demand);
+      console.log("id :", this.id);
+      this.demandService.ajouterEtaffecterDemand(demand, this.id).subscribe((createdDemand: Demand) => {
+        // Handle success
+       
+        this.showAddDialog = false; // Close the dialog
+        this.getDemands();
+        this.newDemand = demand; // Refresh the question list
+      },
+      (error: any) => {
+        console.error(error);
+      });
+    });
+  }
+  
 
   // Mettre à jour une demande existante
   updateDemand(demand: Demand): void {
