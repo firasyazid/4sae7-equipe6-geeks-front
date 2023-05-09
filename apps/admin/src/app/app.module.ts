@@ -46,6 +46,11 @@ import {
   SocialAuthServiceConfig,
 } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { ChartjsComponent } from './pages/users/chartjs/chartjs.component';
+import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
+
 
 
 const routes: Routes = [
@@ -60,6 +65,10 @@ const routes: Routes = [
       {
         path: 'categories',
         component: CategoriesListComponent,
+      },
+      {
+        path: 'chart',
+        component: ChartjsComponent,
       },
       {
         path: 'categories/form',
@@ -142,6 +151,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    CanvasJSChart,
+
     AppComponent,
     NxWelcomeComponent,
     DashboardComponent,
@@ -161,6 +172,7 @@ const routes: Routes = [
     CodeformComponent,
     SignupComponent,
     SignInComponent,
+    ChartjsComponent,
   ],
   imports: [
     TagModule,
