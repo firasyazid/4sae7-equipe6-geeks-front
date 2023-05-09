@@ -41,6 +41,13 @@ import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.compo
 import { SignupComponent } from './pages/users/signup/signup.component';
 import { SignInComponent } from './pages/users/sign-in/sign-in.component';
 
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -178,7 +185,23 @@ const routes: Routes = [
     UsersModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService, MessageService],
+  providers: [
+    CategoriesService,
+    MessageService,
+    // AuthGuardService,
+    // {
+    //   provide: 'SocialAuthServiceConfig',
+    //   useValue: {
+    //     autoLogin: false,
+    //     providers: [
+    //       {
+    //         id: GoogleLoginProvider.PROVIDER_ID,
+    //         provider: new GoogleLoginProvider('155197724097-hbknmiqek55haeokfab965o4fgve19mt.apps.googleusercontent.com'),
+    //       },
+    //     ],
+    //   } as SocialAuthServiceConfig,
+    // },
+  ],
   bootstrap: [AppComponent],
   exports: [
     CollaboratersListComponent,
