@@ -17,51 +17,6 @@
     </div>
     <div class="p-grid">
       <div class="p-col-12">
-
-
-<!--        <p-table [paginator]="true"-->
-<!--        [value]="users"-->
-<!--        styleClass="p-datatable-gridlines"-->
-<!--        [globalFilterFields]="['name']"-->
-<!--       styleClass="p-datatable-gridlines">-->
-<!--          <ng-template pTemplate="header">-->
-<!--            <tr>-->
-<!--              <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>-->
-<!--              <th>password</th>-->
-<!--              <th>enabled</th>-->
-<!--              </tr>-->
-<!--          </ng-template>-->
-<!--          <ng-template pTemplate="body" let-user>-->
-<!--            <tr>-->
-<!--              <td>{{ user.userName }}</td>-->
-<!--              <td>{{ user.password }}</td>-->
-<!--              <td>-->
-<!--                <p-tag-->
-<!--                  *ngIf="user.enabled"-->
-<!--                  icon="pi pi-check"-->
-<!--                  severity="success"-->
-<!--                 ></p-tag>-->
-<!--                <p-tag-->
-<!--                  *ngIf="!user.enabled"-->
-<!--                  icon="pi pi-times"-->
-<!--                  severity="danger"-->
-<!--                 ></p-tag>-->
-<!--               <td>-->
-<!--&lt;!&ndash;                <p-button&ndash;&gt;-->
-<!--&lt;!&ndash;                (click)="deleteUser(user._id)"&ndash;&gt;-->
-<!--&lt;!&ndash;                   styleClass="p-button-danger p-mr-2"&ndash;&gt;-->
-<!--&lt;!&ndash;                  icon="pi pi-trash"&ndash;&gt;-->
-<!--&lt;!&ndash;                ></p-button>&ndash;&gt;-->
-<!--                <p-button-->
-<!--                (click)="updateUser(user._id)"-->
-<!--                   styleClass="p-button-success"-->
-<!--                  icon="pi pi-pencil"-->
-<!--                ></p-button>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--          </ng-template>-->
-<!--        </p-table>-->
-
         <p-table [value]="users" [tableStyle]="{'min-width': '60rem'}">
           <ng-template pTemplate="header">
             <tr>
@@ -81,6 +36,8 @@
               <td>{{user.tel}}</td>
               <td>{{user.email }}</td>
               <td>
+                <a [routerLink]="['/users/form', user.id]" [queryParams]="{ user: user }">Update</a>
+
                 <p-button
                   (click)="updateUser(user.id)"
                   styleClass="p-button-outlined p-button-warning"

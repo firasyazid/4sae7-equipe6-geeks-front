@@ -38,12 +38,14 @@ import { OrderDetailsComponent } from './pages/orders/order-details/order-detail
 import { FieldsetModule } from 'primeng/fieldset';
 import { CodePromoListComponent } from './pages/CodepromoComp/code-promo-list/code-promo-list.component';
 import { CodeformComponent } from './pages/CodepromoComp/codeform/codeform.component';
+import { SignupComponent } from './pages/users/signup/signup.component';
+import { SignInComponent } from './pages/users/sign-in/sign-in.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-     children: [
+    children: [
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -88,6 +90,14 @@ const routes: Routes = [
       },
 
       {
+        path: 'signup',
+        component: SignupComponent,
+      },
+      {
+        path: 'signin',
+        component: SignInComponent,
+      },
+      {
         path: 'users',
         component: UsersListComponent,
       },
@@ -118,8 +128,7 @@ const routes: Routes = [
       {
         path: 'codepromo/form/:id',
         component: CodeformComponent,
-      }
-
+      },
     ],
   },
 ];
@@ -143,6 +152,8 @@ const routes: Routes = [
     OrderDetailsComponent,
     CodePromoListComponent,
     CodeformComponent,
+    SignupComponent,
+    SignInComponent,
   ],
   imports: [
     TagModule,

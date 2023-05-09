@@ -15,13 +15,16 @@ export class  UserService {
   getuser(id : number ) {
     return this.http.get(this.apiUrl+"/user/"+id);
   }
+  getUserByID(id : number ) {
+    return this.http.get<User>(this.apiUrl+"/user/byId/"+id);
+  }
 
   addUser(user:User){
     return this.http.post<User>(this.apiUrl , user);
 
   }
   updateUser(user:User){
-    return this.http.put<User>(this.apiUrl+"/updateUser" , user);
+    return this.http.put<User>(this.apiUrl+"/user/" + user.id , user);
 
   }
   deleteUser(id:number) {
