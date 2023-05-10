@@ -24,7 +24,11 @@ export class ChartjsComponent implements OnInit {
   {
 
     await this.userService.getAllUsers().subscribe(x=>{
-    x.forEach((user:User) => {
+
+      let signupData = this.calculateSignupStatistics(x); // Calculate signup statistics
+
+      console.table(signupData)
+      x.forEach((user:User) => {
       this.roleCounts[user.roles[0].name] += 1;
     });
 
@@ -60,6 +64,7 @@ export class ChartjsComponent implements OnInit {
 
 
   chartOptions
+  chartOptions2
 
 
   async ngOnInit() {
@@ -68,10 +73,42 @@ export class ChartjsComponent implements OnInit {
 
   async startAll(): Promise<void>  {
     // await this.stats()
-
-
-
-
     console.log("~~~~",await this.stats())
   }
+
+  calculateSignupStatistics(users: any[]): any[] {
+    const signupCounts = [];
+
+    // Iterate over users and group them by month-year
+    for (const user of users) {
+      const signupDate = new Date(user.signupDay);
+      // console.log('date= ',signupDate)
+      const monthYear = `${signupDate.getMonth() + 1}-${signupDate.getFullYear()}`;
+
+      if (signupCounts[monthYear]) {
+        signupCounts[monthYear]++;
+      } else {
+        signupCounts[monthYear] = 1;
+      }
+    }
+
+    // Convert signupCounts object into an array of data points
+    const signupData = Object.entries(signupCounts).map(([monthYear, count]) => ({
+      label: monthYear,
+      y: count
+    }));
+
+    this.chartOptions2 = {
+      title: {
+        text: "Chart for user engagement"
+      },
+      data: [{
+        type: "bar",
+        dataPoints: signupData
+      }]
+    }
+
+    return signupData;
+  }
+
 }
