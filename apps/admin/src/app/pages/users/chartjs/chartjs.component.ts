@@ -103,7 +103,7 @@ export class ChartjsComponent implements OnInit {
         text: "Chart for user engagement"
       },
       data: [{
-        type: "bar",
+        type: "pie",
         dataPoints: signupData
       }]
     }
