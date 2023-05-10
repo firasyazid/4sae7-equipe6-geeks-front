@@ -1,42 +1,123 @@
-<div class="signup-container">
-  <h2>Sign Up</h2>
-  <form (submit)="onSignUp()">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" id="firstName" name="firstName" [(ngModel)]="signUpData.firstName" required>
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" id="lastName" name="lastName" [(ngModel)]="signUpData.lastName" required>
-    </div>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" [(ngModel)]="signUpData.username" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" [(ngModel)]="signUpData.password" required>
-    </div>
-    <div class="form-group">
-      <label for="passwordConfirm">Confirm Password</label>
-      <input type="password" id="passwordConfirm" name="passwordConfirm" [(ngModel)]="signUpData.passwordConfirm" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" [(ngModel)]="signUpData.email" required>
-    </div>
-    <div class="form-group">
-      <label for="address">Address</label>
-      <input type="text" id="address" name="address" [(ngModel)]="signUpData.address" required>
-    </div>
-    <div class="form-group">
-      <label for="dateOfBirth">Date of Birth</label>
-      <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="signUpData.dateN" required>
-    </div>
-    <div class="form-group">
-      <label for="tel">Telephone</label>
-      <input type="tel" id="tel" name="tel" [(ngModel)]="signUpData.tel" required>
-    </div>
-    <button type="submit">Sign Up</button>
-  </form>
+<p-toast></p-toast>
+
+<p-card header="sign Up" role="region" subheader="You can sign up here">
+<!--  <div class="signup-container">-->
+<!--</p-card>-->
+    <div class="p-grid">
+<!--      <div class="p-col-12">-->
+<!--        <h2>Sign Up</h2>-->
+<!--        <form (submit)="onSignUp()">-->
+          <!--          <div class="form-group">-->
+<!--          <div class="p-grid">-->
+            <div class="p-col-12">
+
+              <!--        <div class="p-col-12">-->
+              <!--                <form [formGroup]="form">-->
+              <!--                <form (submit)="onSubmit()">-->
+              <div class="p-fluid p-formgrid p-grid">
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="firstName">firstName</label>-->
+<!--                  <input type="text" id="firstName" name="firstName" [(ngModel)]="signUpData.firstName" required>-->
+<!--                  &lt;!&ndash;                      <small *ngIf="userForm['firstName'].invalid " class="p-error"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                        >firstName is required</small>&ndash;&gt;-->
+<!--                </div>-->
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="text" id="firstName" name="firstName" pInputText placeholder="firstName" [(ngModel)]="signUpData.firstName" required/>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="text" id="lastName" name="firstName" pInputText placeholder="lastName" [(ngModel)]="signUpData.lastName" required/>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="text" id="username" name="username" pInputText placeholder="username" [(ngModel)]="signUpData.username" required/>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-password"></i></span>
+                  <input type="text" id="password" name="password" pInputText placeholder="password" [(ngModel)]="signUpData.password" required/>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="text" id="passwordConfirm" name="passwordConfirm" pInputText placeholder="passwordConfirm" [(ngModel)]="signUpData.passwordConfirm" required/>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-email"></i></span>
+                  <input type="text" id="email" name="email" pInputText placeholder="email" [(ngModel)]="signUpData.email" required/>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="text" id="address" name="address" pInputText placeholder="address" [(ngModel)]="signUpData.address" required/>
+                </div>
+<!--                <div class="p-inputgroup">-->
+<!--                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>-->
+<!--                  <input type="text" id="dateOfBirth" name="dateOfBirth" pInputText placeholder="dateOfBirth" [(ngModel)]="signUpData.dateN" required/>-->
+<!--                </div>-->
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <label for="dateOfBirth"></label>
+                  <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="signUpData.dateN" required>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="text" id="tel" name="tel" pInputText placeholder="tel" [(ngModel)]="signUpData.tel" required/>
+                </div>
+<!--                <button type="submit">Sign Up</button>-->
+<div>
+  <button type="submit" (click)="onSignUp()" pButton icon="pi pi-check" styleClass="p-button-success"></button>
 </div>
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="lastName">lastName</label>-->
+<!--                  <input type="text" id="lastName" name="lastName" [(ngModel)]="signUpData.lastName" required>-->
+<!--                </div>-->
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="username">username</label>-->
+<!--                  <input type="text" id="username" name="username" [(ngModel)]="signUpData.username" required>-->
+<!--                </div>-->
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="password">password</label>-->
+<!--                  <input type="password" id="password" name="password" [(ngModel)]="signUpData.password" required>-->
+<!--                </div>-->
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="passwordConfirm">passwordConfirm</label>-->
+<!--                  <input type="password" id="passwordConfirm" name="passwordConfirm"-->
+<!--                         [(ngModel)]="signUpData.passwordConfirm" required>-->
+<!--                </div>-->
+
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="email">email</label>-->
+<!--                  <input type="email" id="email" name="email" [(ngModel)]="signUpData.email" required>-->
+<!--                </div>-->
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="address">address</label>-->
+<!--                  <input type="text" id="address" name="address" [(ngModel)]="signUpData.address" required>-->
+<!--                </div>-->
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="dateOfBirth">dateOfBirth</label>-->
+<!--                  <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="signUpData.dateN" required>-->
+<!--                </div>-->
+
+<!--                <div class="p-field p-col-4">-->
+<!--                  <label for="tel">tel</label>-->
+<!--                  <input type="tel" id="tel" name="tel" [(ngModel)]="signUpData.tel" required>-->
+<!--                </div>-->
+
+
+
+              </div>
+            </div>
+          </div>
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+</p-card>
+

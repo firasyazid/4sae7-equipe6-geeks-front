@@ -5,7 +5,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'bluebits-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  styles:[]
+  // styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
   signUpData={
