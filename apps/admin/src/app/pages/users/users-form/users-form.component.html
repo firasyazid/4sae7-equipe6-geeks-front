@@ -21,10 +21,18 @@
           </div>
         </p-toolbar>
       </div>
+
+
     </div>
 
 
-
+    <label class="image-upload-container btn btn-bwm">
+      <span>Select Image</span>
+      <input #imageInput
+             type="file"
+             accept="image/*"
+             (change)="processFile(imageInput)">
+    </label>
       <div class="p-grid">-->
               <div class="p-col-12">
 <!--                <form [formGroup]="form">-->

@@ -69,6 +69,19 @@ export class UsersFormComponent implements OnInit {
 
   }
 
+  selectedFile: ImageSnippet;
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+    });
+
+    reader.readAsDataURL(file);
+  }
+
   // private _addUser(user: User) {
   //   this.usersService.createUser(user).subscribe(
   //     (user: User) => {
@@ -99,4 +112,7 @@ export class UsersFormComponent implements OnInit {
 
   }
 
+}
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
 }
