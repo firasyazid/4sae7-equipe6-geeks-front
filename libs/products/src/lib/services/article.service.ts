@@ -44,5 +44,10 @@ export class ArticleService {
       .get<number>(`http://localhost:3308/Articles/countArticles`)
    }
 
-  
+   QrCode(id: string): Observable<string> {
+    const url = `http://localhost:3308/Articles/qrcode/${id}`;
+    return this.http.post<string>(url, {});
+  }
+
+ 
 }

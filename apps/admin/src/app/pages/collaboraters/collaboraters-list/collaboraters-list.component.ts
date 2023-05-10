@@ -105,6 +105,16 @@ export class CollaboratersListComponent implements OnInit {
   }
 
 
+  Qrcode(id: string): void {
+    this.articleService.QrCode(id).subscribe(qrcode => {
+      
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: `Qr Code Dowloaded!`
+      });
+     });
+  }
    
  
     _addArticle(collab: FormData) {

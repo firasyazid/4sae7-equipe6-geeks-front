@@ -71,13 +71,9 @@
                                 (onClick)="deleteClaim(claims.id)"
                                 styleClass="p-button-danger -p-mr-5"
                                     icon="pi pi-trash"></p-button>
-                                    
-                                    
-                                <p-button
-                                (onClick)="updateClaim(claims.id)"
-                                    styleClass="p-button-success"
-                                  icon="pi pi-pencil"
-                                ></p-button>
+                <button pButton pRipple label="Update" (click)="updateClaim(claims.id)" icon="pi pi-pencil"></button> <br>
+
+                                
                                </td>
                         </tr>
                     </ng-template>
